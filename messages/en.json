@@ -1,0 +1,59 @@
+{
+  "SEO": {
+    "title": "Custom Kitchens | KOLSS",
+    "description": "We design and manufacture modern custom kitchens: high-quality materials, fast timelines, and guaranteed results."
+  },
+  "Navigation": {
+    "logo": "KOLSS",
+    "catalog": "Catalog",
+    "about": "About Us",
+    "contacts": "Contacts"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "localeLabel": "Choose language",
+    "uk": "Ukrainian",
+    "pl": "Polish",
+    "en": "English"
+  },
+  "Hero": {
+    "title": "Kitchens designed for your comfort",
+    "subtitle": "We create custom kitchens tailored to your space, style, and budget.",
+    "cta": "Go to catalog",
+    "imageAlt": "Modern kitchen for the main banner"
+  },
+  "Features": {
+    "title": "Why choose us",
+    "speed": {
+      "title": "Speed",
+      "description": "Transparent production and installation timelines with no delays."
+    },
+    "quality": {
+      "title": "Quality",
+      "description": "Materials and fittings from trusted manufacturers."
+    },
+    "warranty": {
+      "title": "Warranty",
+      "description": "We provide an official warranty and ongoing service support."
+    }
+  },
+  "FeaturedKitchens": {
+    "title": "Popular models",
+    "priceFrom": "Price from",
+    "catalogButton": "View in catalog",
+    "imageAlt": "Kitchen model: {title}"
+  },
+  "CTA": {
+    "title": "Ready to discuss your project?",
+    "subtitle": "Leave a request or contact us for a free consultation.",
+    "button": "Go to contacts"
+  },
+  "Footer": {
+    "copyright": "© 2026 KOLSS. All rights reserved."
+  },
+  "Sections": {
+    "catalog": "Kitchen catalog",
+    "about": "Company information",
+    "contacts": "Contact information"
+  }
+}

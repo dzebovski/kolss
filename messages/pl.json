@@ -1,0 +1,59 @@
+{
+  "SEO": {
+    "title": "Kuchnie na wymiar | KOLSS",
+    "description": "Projektujemy i produkujemy nowoczesne kuchnie na wymiar: wysokiej jakości materiały, szybkie terminy realizacji i gwarancja efektu."
+  },
+  "Navigation": {
+    "logo": "KOLSS",
+    "catalog": "Katalog",
+    "about": "O nas",
+    "contacts": "Kontakt"
+  },
+  "LanguageSwitcher": {
+    "label": "Język",
+    "localeLabel": "Wybierz język",
+    "uk": "Ukraiński",
+    "pl": "Polski",
+    "en": "English"
+  },
+  "Hero": {
+    "title": "Kuchnie stworzone dla Twojego komfortu",
+    "subtitle": "Tworzymy kuchnie na wymiar dopasowane do Twojej przestrzeni, stylu i budżetu.",
+    "cta": "Przejdź do katalogu",
+    "imageAlt": "Nowoczesna kuchnia do głównego banera"
+  },
+  "Features": {
+    "title": "Dlaczego nas wybierają",
+    "speed": {
+      "title": "Szybkość",
+      "description": "Przejrzyste terminy produkcji i montażu bez opóźnień."
+    },
+    "quality": {
+      "title": "Jakość",
+      "description": "Materiały i okucia od sprawdzonych producentów."
+    },
+    "warranty": {
+      "title": "Gwarancja",
+      "description": "Zapewniamy oficjalną gwarancję oraz wsparcie serwisowe."
+    }
+  },
+  "FeaturedKitchens": {
+    "title": "Popularne modele",
+    "priceFrom": "Cena od",
+    "catalogButton": "Zobacz w katalogu",
+    "imageAlt": "Model kuchni: {title}"
+  },
+  "CTA": {
+    "title": "Gotowi omówić Twój projekt?",
+    "subtitle": "Zostaw zapytanie lub skontaktuj się z nami, aby otrzymać bezpłatną konsultację.",
+    "button": "Przejdź do kontaktu"
+  },
+  "Footer": {
+    "copyright": "© 2026 KOLSS. Wszelkie prawa zastrzeżone."
+  },
+  "Sections": {
+    "catalog": "Katalog kuchni",
+    "about": "Informacje o firmie",
+    "contacts": "Informacje kontaktowe"
+  }
+}
