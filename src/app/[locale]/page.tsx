@@ -1,12 +1,19 @@
 import Image from 'next/image';
 import {CheckCircle2, ShieldCheck, Zap} from 'lucide-react';
-import {getTranslations} from 'next-intl/server';
+import {getLocale, getTranslations} from 'next-intl/server';
 
 import {LanguageSwitcher} from '@/src/components/layout/language-switcher';
+import {routing} from '@/src/i18n/routing';
 import {Link} from '@/src/i18n/navigation';
 import {kitchenProjects} from '@/src/lib/mock-data/mock-data';
+import {AppLocale} from '@/src/types';
 
 export default async function HomePage() {
+  const requestLocale = await getLocale();
+  const locale: AppLocale = routing.locales.includes(requestLocale as AppLocale)
+    ? (requestLocale as AppLocale)
+    : 'uk';
+
   const tNavigation = await getTranslations('Navigation');
   const tHero = await getTranslations('Hero');
   const tFeatures = await getTranslations('Features');
@@ -15,6 +22,16 @@ export default async function HomePage() {
   const tFooter = await getTranslations('Footer');
 
   const featuredItems = kitchenProjects.filter((project) => project.isFeature).slice(0, 3);
+  const currencyByLocale: Record<AppLocale, string> = {
+    uk: 'UAH',
+    pl: 'PLN',
+    en: 'USD'
+  };
+  const priceFormatter = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currencyByLocale[locale],
+    maximumFractionDigits: 0
+  });
 
   return (
     <>
@@ -31,7 +48,7 @@ export default async function HomePage() {
             <a className="text-slate-700 transition hover:text-slate-900" href="#features">
               {tNavigation('about')}
             </a>
-            <a className="text-slate-700 transition hover:text-slate-900" href="#cta">
+            <a className="text-slate-700 transition hover:text-slate-900" href="#contacts">
               {tNavigation('contacts')}
             </a>
             <LanguageSwitcher />
@@ -96,39 +113,47 @@ export default async function HomePage() {
           <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
             <h2 className="text-3xl font-semibold text-slate-900">{tFeatured('title')}</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {featuredItems.map((project) => (
-                <article className="overflow-hidden rounded-xl border border-slate-200 bg-white" key={project.id}>
-                  <Image
-                    alt={tFeatured('imageAlt', {title: project.title})}
-                    className="h-auto w-full"
-                    height={800}
-                    quality={85}
-                    src={project.images[0]}
-                    width={1200}
-                  />
-                  <div className="space-y-3 p-5">
-                    <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
-                    <p className="text-sm text-slate-600">{project.description}</p>
-                    <p className="text-sm font-medium text-slate-900">
-                      {tFeatured('priceFrom')}: {project.priceStart}$
-                    </p>
-                    <Link className="text-sm font-medium text-slate-900 underline" href={`/kitchens/${project.slug}`}>
-                      {tFeatured('catalogButton')}
-                    </Link>
-                  </div>
-                </article>
-              ))}
+              {featuredItems.map((project) => {
+                const title = project.title[locale];
+                const description = project.description[locale];
+                const formattedPrice = project.priceStart ? priceFormatter.format(project.priceStart) : null;
+
+                return (
+                  <article className="overflow-hidden rounded-xl border border-slate-200 bg-white" key={project.id}>
+                    <Image
+                      alt={tFeatured('imageAlt', {title})}
+                      className="h-auto w-full"
+                      height={800}
+                      quality={85}
+                      src={project.images[0]}
+                      width={1200}
+                    />
+                    <div className="space-y-3 p-5">
+                      <h3 className="text-xl font-semibold text-slate-900">{title}</h3>
+                      <p className="text-sm text-slate-600">{description}</p>
+                      {formattedPrice ? (
+                        <p className="text-sm font-medium text-slate-900">
+                          {tFeatured('priceFrom')}: {formattedPrice}
+                        </p>
+                      ) : null}
+                      <Link className="text-sm font-medium text-slate-900 underline" href={`/kitchens/${project.slug}`}>
+                        {tFeatured('catalogButton')}
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        <section id="cta">
+        <section id="contacts">
           <div className="mx-auto w-full max-w-6xl px-4 py-16 text-center md:px-6">
             <h2 className="text-3xl font-semibold text-slate-900">{tCta('title')}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600">{tCta('subtitle')}</p>
             <Link
               className="mt-8 inline-flex rounded-md bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-              href="/#cta"
+              href="/#contacts"
             >
               {tCta('button')}
             </Link>
