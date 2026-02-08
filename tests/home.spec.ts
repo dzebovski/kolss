@@ -38,6 +38,13 @@ test.describe('Home page i18n', () => {
     expect(await cards.count()).toBeGreaterThan(0);
   });
 
+  test('loads catalog page for locale', async ({page}) => {
+    await page.goto('/uk/catalog');
+
+    await expect(page).toHaveURL(/\/uk\/catalog(\/)?$/);
+    await expect(page.getByRole('heading', {level: 1})).toBeVisible();
+  });
+
   test('renders contact form in contacts section', async ({page}) => {
     await page.goto('/uk');
 

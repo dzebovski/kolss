@@ -37,6 +37,7 @@ function buildMessage(payload: ContactFormValues, fileUrl: string | null) {
 }
 
 async function uploadFileToStorage(file: File) {
+  console.log('[contact] upload start');
   const supabase = createAdminClient();
   const ext = file.name.includes('.') ? file.name.split('.').pop() : 'bin';
   const path = `leads/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
@@ -51,58 +52,124 @@ async function uploadFileToStorage(file: File) {
   }
 
   const {data: publicData} = supabase.storage.from('kitchen-assets').getPublicUrl(path);
+  console.log('[contact] file uploaded:', publicData.publicUrl);
   return publicData.publicUrl;
 }
 
 async function sendToPipedrive(payload: ContactFormValues, context: IntegrationContext) {
   const apiToken = process.env.PIPEDRIVE_API_TOKEN;
   if (!apiToken) {
+    console.log('[contact] pipedrive skipped: missing API token');
     return;
   }
 
   const baseUrl = process.env.PIPEDRIVE_API_URL ?? 'https://api.pipedrive.com/v1';
-  const createType = process.env.PIPEDRIVE_CREATE_TYPE === 'deal' ? 'deals' : 'leads';
-  const url = `${baseUrl}/${createType}?api_token=${apiToken}`;
-  const note = buildMessage(payload, context.fileUrl);
+  const personUrl = `${baseUrl}/persons?api_token=${apiToken}`;
+  const leadUrl = `${baseUrl}/leads?api_token=${apiToken}`;
+  const noteUrl = `${baseUrl}/notes?api_token=${apiToken}`;
 
-  const body =
-    createType === 'deals'
-      ? {
-          title: `Заявка з сайту: ${payload.name}`,
-          person_name: payload.name,
-          phone: payload.phone,
-          email: payload.email || undefined,
-          note
-        }
-      : {
-          title: `Заявка з сайту: ${payload.name}`,
-          person_name: payload.name,
-          phone: payload.phone,
-          email: payload.email || undefined,
-          note
-        };
-
-  const response = await fetch(url, {
+  console.log('[contact] pipedrive person create start');
+  const personResponse = await fetch(personUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify({
+      name: payload.name,
+      email: payload.email
+        ? [
+            {
+              value: payload.email,
+              primary: true
+            }
+          ]
+        : undefined,
+      phone: payload.phone
+        ? [
+            {
+              value: payload.phone,
+              primary: true
+            }
+          ]
+        : undefined
+    })
   });
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Pipedrive error: ${response.status} ${text}`);
+  if (!personResponse.ok) {
+    const text = await personResponse.text();
+    throw new Error(`Pipedrive person error: ${personResponse.status} ${text}`);
   }
+
+  const personData = (await personResponse.json()) as {data?: {id?: number}};
+  const personId = personData.data?.id;
+
+  if (!personId) {
+    throw new Error('Pipedrive person created without ID');
+  }
+
+  console.log(`[contact] Pipedrive person created ID: ${personId}`);
+
+  console.log('[contact] pipedrive lead create start');
+  const leadResponse = await fetch(leadUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title: `Заявка з сайту: ${payload.name} (${payload.phone})`,
+      person_id: personId
+    })
+  });
+
+  if (!leadResponse.ok) {
+    const text = await leadResponse.text();
+    throw new Error(`Pipedrive error: ${leadResponse.status} ${text}`);
+  }
+
+  const leadData = (await leadResponse.json()) as {data?: {id?: string}};
+  const leadId = leadData.data?.id;
+
+  if (!leadId) {
+    throw new Error('Pipedrive lead created without ID');
+  }
+
+  console.log(`[contact] Лід створено ID: ${leadId}`);
+
+  const noteContent = [
+    `Повідомлення: ${payload.message}`,
+    `Бюджет: ${payload.budget || '—'}`,
+    `Файл: ${context.fileUrl || '—'}`
+  ].join('\n');
+
+  console.log('[contact] pipedrive note create start');
+  const noteResponse = await fetch(noteUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      lead_id: leadId,
+      content: noteContent
+    })
+  });
+
+  if (!noteResponse.ok) {
+    const text = await noteResponse.text();
+    throw new Error(`Pipedrive notes error: ${noteResponse.status} ${text}`);
+  }
+
+  console.log('[contact] Нотатку додано');
 }
 
 async function sendToTelegram(payload: ContactFormValues, context: IntegrationContext) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
+    console.log('[contact] telegram skipped: missing token/chat id');
     return;
   }
 
+  console.log('[contact] telegram send start');
   const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: 'POST',
     headers: {
@@ -118,14 +185,18 @@ async function sendToTelegram(payload: ContactFormValues, context: IntegrationCo
     const body = await response.text();
     throw new Error(`Telegram error: ${response.status} ${body}`);
   }
+
+  console.log('[contact] telegram sent');
 }
 
 async function sendToSlack(payload: ContactFormValues, context: IntegrationContext) {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) {
+    console.log('[contact] slack skipped: missing webhook');
     return;
   }
 
+  console.log('[contact] slack send start');
   const response = await fetch(webhookUrl, {
     method: 'POST',
     headers: {
@@ -154,7 +225,10 @@ async function sendToSlack(payload: ContactFormValues, context: IntegrationConte
         },
         {
           type: 'section',
-          text: {type: 'mrkdwn', text: `*Файл*\n${context.fileUrl || '—'}`}
+          text: {
+            type: 'mrkdwn',
+            text: `*Файл*\n${context.fileUrl ? `<${context.fileUrl}|Відкрити файл>` : '—'}`
+          }
         }
       ]
     })
@@ -164,6 +238,8 @@ async function sendToSlack(payload: ContactFormValues, context: IntegrationConte
     const body = await response.text();
     throw new Error(`Slack error: ${response.status} ${body}`);
   }
+
+  console.log('[contact] slack sent');
 }
 
 async function saveLeadToDatabase(
@@ -171,6 +247,8 @@ async function saveLeadToDatabase(
   context: IntegrationContext,
   integrations: IntegrationStatus
 ) {
+  console.log('[contact] integration status:', integrations);
+  console.log('[contact] supabase insert start');
   const supabase = createAdminClient();
 
   const {error} = await supabase.from('leads').insert({
@@ -180,15 +258,14 @@ async function saveLeadToDatabase(
     message: payload.message,
     preferred_contact: payload.preferredContact,
     budget: payload.budget || null,
-    file_url: context.fileUrl,
-    pipedrive_synced: integrations.pipedrive,
-    telegram_synced: integrations.telegram,
-    slack_synced: integrations.slack
+    file_url: context.fileUrl
   });
 
   if (error) {
     throw new Error(`Leads insert error: ${error.message}`);
   }
+
+  console.log('[contact] В базу записано');
 }
 
 export async function submitContact(values: ContactFormValues): Promise<ContactActionState> {
@@ -218,25 +295,32 @@ export async function submitContact(values: ContactFormValues): Promise<ContactA
     }
 
     const context: IntegrationContext = {fileUrl};
-
-    const results = await Promise.allSettled([
-      sendToPipedrive(payload, context),
-      sendToTelegram(payload, context),
-      sendToSlack(payload, context)
-    ]);
-
     const integrationStatus: IntegrationStatus = {
-      pipedrive: results[0].status === 'fulfilled',
-      telegram: results[1].status === 'fulfilled',
-      slack: results[2].status === 'fulfilled'
+      pipedrive: false,
+      telegram: false,
+      slack: false
     };
 
-    results.forEach((result, index) => {
-      if (result.status === 'rejected') {
-        const name = index === 0 ? 'pipedrive' : index === 1 ? 'telegram' : 'slack';
-        console.error(`[contact] ${name} integration error:`, result.reason);
-      }
-    });
+    try {
+      await sendToPipedrive(payload, context);
+      integrationStatus.pipedrive = true;
+    } catch (error) {
+      console.error('[contact] pipedrive integration error:', error);
+    }
+
+    try {
+      await sendToTelegram(payload, context);
+      integrationStatus.telegram = true;
+    } catch (error) {
+      console.error('[contact] telegram integration error:', error);
+    }
+
+    try {
+      await sendToSlack(payload, context);
+      integrationStatus.slack = true;
+    } catch (error) {
+      console.error('[contact] slack integration error:', error);
+    }
 
     await saveLeadToDatabase(payload, context, integrationStatus);
 

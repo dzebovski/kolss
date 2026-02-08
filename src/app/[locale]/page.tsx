@@ -2,7 +2,10 @@ import Image from 'next/image';
 import {CheckCircle2, ShieldCheck, Zap} from 'lucide-react';
 import {getLocale, getTranslations} from 'next-intl/server';
 
+import {FadeIn} from '@/src/components/animations/fade-in';
+import {ContactForm} from '@/src/components/forms/contact-form';
 import {LanguageSwitcher} from '@/src/components/layout/language-switcher';
+import {VideoSection} from '@/src/components/sections/video-section';
 import {routing} from '@/src/i18n/routing';
 import {Link} from '@/src/i18n/navigation';
 import {kitchenProjects} from '@/src/lib/mock-data/mock-data';
@@ -110,7 +113,7 @@ export default async function HomePage() {
         </section>
 
         <section className="bg-slate-50" id="featured-kitchens">
-          <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
+          <FadeIn className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
             <h2 className="text-3xl font-semibold text-slate-900">{tFeatured('title')}</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {featuredItems.map((project) => {
@@ -144,20 +147,23 @@ export default async function HomePage() {
                 );
               })}
             </div>
-          </div>
+          </FadeIn>
+        </section>
+
+        <section className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6" id="video">
+          <FadeIn>
+            <VideoSection />
+          </FadeIn>
         </section>
 
         <section id="contacts">
-          <div className="mx-auto w-full max-w-6xl px-4 py-16 text-center md:px-6">
+          <FadeIn className="mx-auto w-full max-w-6xl px-4 py-16 text-center md:px-6">
             <h2 className="text-3xl font-semibold text-slate-900">{tCta('title')}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600">{tCta('subtitle')}</p>
-            <Link
-              className="mt-8 inline-flex rounded-md bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-              href="/#contacts"
-            >
-              {tCta('button')}
-            </Link>
-          </div>
+            <div className="mx-auto mt-8 max-w-3xl text-left">
+              <ContactForm />
+            </div>
+          </FadeIn>
         </section>
       </main>
 
