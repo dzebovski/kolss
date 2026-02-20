@@ -66,6 +66,173 @@
     "title": "Oblicz koszt swojej idealnej kuchni",
     "subtitle": "Otrzymaj dokładną wycenę swojej przyszłej kuchni w kilka minut",
     "placeholderTitle": "Miejsce na kalkulator",
-    "placeholderDescription": "Tutaj zostanie zaimplementowany kalkulator kosztów kuchni"
+    "placeholderDescription": "Tutaj zostanie zaimplementowany kalkulator kosztów kuchni",
+    "wizard": {
+      "progressLabel": "Kroki kalkulatora",
+      "steps": {
+        "size": "Rozmiar i układ",
+        "colors": "Wykończenie",
+        "equipment": "Wyposażenie",
+        "installation": "Montaż",
+        "summary": "Podsumowanie"
+      },
+      "navigation": {
+        "next": "Następny krok",
+        "back": "Wstecz",
+        "submit": "Otrzymaj wycenę"
+      },
+      "size": {
+        "sectionTitle": "Jaki jest rozmiar Twojej kuchni?",
+        "sectionDescription": "Wybierz metraż, który najlepiej odpowiada wymiarom Twojej kuchni.",
+        "small": {
+          "title": "Mała",
+          "description": "Do 5 m²"
+        },
+        "medium": {
+          "title": "Średnia",
+          "description": "5–8 m²"
+        },
+        "large": {
+          "title": "Duża",
+          "description": "Powyżej 8 m²"
+        }
+      },
+      "layout": {
+        "sectionTitle": "Wybierz układ kuchni",
+        "sectionDescription": "Wybierz układ, który najlepiej pasuje do Twojego stylu gotowania i poruszania się.",
+        "linear": {
+          "title": "Liniowa",
+          "description": "Jeden rząd wzdłuż jednej ściany"
+        },
+        "l_shaped": {
+          "title": "W kształcie L",
+          "description": "Dwa rzędy pod kątem prostym"
+        },
+        "u_shaped": {
+          "title": "W kształcie U",
+          "description": "Trójstronny układ dla maksymalnej przestrzeni"
+        },
+        "island": {
+          "title": "Z wyspą",
+          "description": "Otwarta kuchnia z centralną wyspą"
+        }
+      },
+      "colors": {
+        "sectionTitle": "Wybierz wykończenie frontów",
+        "sectionDescription": "Określ kierunek kolorystyczny frontów i widocznych powierzchni.",
+        "classic_white": {
+          "title": "Klasyczna biel",
+          "description": "Ponadczasowe, jasne i wszechstronne"
+        },
+        "natural_wood": {
+          "title": "Naturalne drewno",
+          "description": "Ciepłe odcienie z naturalnym fornirem dębowym"
+        },
+        "graphite_grey": {
+          "title": "Grafitowy szary",
+          "description": "Czysty, nowoczesny i stonowany"
+        },
+        "anthracite": {
+          "title": "Antracyt",
+          "description": "Odważne i wyraziste ciemne wykończenie"
+        }
+      },
+      "equipment": {
+        "worktops": {
+          "sectionTitle": "Wybierz materiał blatu",
+          "sectionDescription": "Blat wpływa na trwałość i charakter wizualny. Wybierz jeden materiał.",
+          "laminate": {
+            "title": "Laminat",
+            "description": "Trwała i przystępna cenowo powierzchnia"
+          },
+          "quartz": {
+            "title": "Kwarc",
+            "description": "Kamień inżynierowany najwyższej jakości"
+          },
+          "granite": {
+            "title": "Granit",
+            "description": "Naturalny kamień, luksusowe wykończenie"
+          }
+        },
+        "plumbing": {
+          "sectionTitle": "Zestaw zlewozmywaka i baterii",
+          "sectionDescription": "Wybierz poziom pakietu armatury i wyposażenia zlewozmywaka.",
+          "standard": {
+            "title": "Standard",
+            "description": "Jednokomorowy zlewozmywak z baterią"
+          },
+          "premium": {
+            "title": "Premium",
+            "description": "Zlewozmywak podwieszany z kranem filtrującym"
+          }
+        },
+        "appliances": {
+          "sectionTitle": "Wybierz sprzęt AGD",
+          "sectionDescription": "Dodaj urządzenia, które mają zostać uwzględnione w wycenie.",
+          "hob": {
+            "title": "Płyta indukcyjna",
+            "description": "4-strefowa płyta indukcyjna"
+          },
+          "oven": {
+            "title": "Piekarnik do zabudowy",
+            "description": "Wielofunkcyjny piekarnik elektryczny"
+          },
+          "dishwasher": {
+            "title": "Zmywarka",
+            "description": "W pełni zintegrowana zmywarka"
+          },
+          "fridge": {
+            "title": "Lodówka",
+            "description": "Zintegrowana lodówka z zamrażarką"
+          }
+        }
+      },
+      "installation": {
+        "sectionTitle": "Wybierz pakiet montażu",
+        "sectionDescription": "Porównaj zakres prac i wybierz preferowany poziom realizacji.",
+        "basic": {
+          "title": "Podstawowy",
+          "description": "Tylko dostawa i montaż szafek"
+        },
+        "standard": {
+          "title": "Standard",
+          "description": "Montaż oraz podłączenie instalacji wod-kan"
+        },
+        "premium": {
+          "title": "Premium",
+          "description": "Kompletny montaż pod klucz z pracami wykończeniowymi"
+        }
+      },
+      "summary": {
+        "sectionTitle": "Twoja wycena kuchni",
+        "sectionDescription": "Sprawdź wybory i przejdź dalej, aby otrzymać dopasowaną ofertę.",
+        "total": "Szacowany koszt",
+        "disclaimer": "Ostateczna cena może się różnić po konsultacji z doradcą",
+        "cta": "Zamów konsultację"
+      }
+    }
+  },
+  "UIKit": {
+    "title": "UI Kit / System projektowy",
+    "description": "Piaskownica tylko do developmentu do weryfikacji wielokrotnego użytku komponentów i stanów interakcji.",
+    "calculatorPrimitivesTitle": "Prymitywy UI kalkulatora",
+    "cards": {
+      "default": {
+        "title": "Bazowa opcja kuchni",
+        "description": "Stan niezaznaczony ze standardowym opisem i formatowaniem ceny."
+      },
+      "selected": {
+        "title": "Zaznaczona opcja kuchni",
+        "description": "Podgląd stanu zaznaczonego z obramowaniem i ringiem primary."
+      },
+      "withImage": {
+        "title": "Karta z obrazem",
+        "description": "Pokazuje układ z mediami, object-cover i semantyczne style hover."
+      },
+      "longText": {
+        "title": "Bardzo długi tytuł karty do testu zawijania tekstu w wielu liniach w responsywnej siatce",
+        "description": "Ta karta brzegowa celowo używa dłuższego opisu, aby sprawdzić zawijanie, rytm pionowy i stabilność wizualną, gdy gęstość treści jest znacznie większa niż w standardowych wariantach."
+      }
+    }
   }
 }

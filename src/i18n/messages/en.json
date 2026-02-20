@@ -66,6 +66,173 @@
     "title": "Calculate the cost of your ideal kitchen",
     "subtitle": "Get an accurate estimate of your future kitchen in just a few minutes",
     "placeholderTitle": "Calculator Component Placeholder",
-    "placeholderDescription": "The kitchen cost calculator will be implemented here"
+    "placeholderDescription": "The kitchen cost calculator will be implemented here",
+    "wizard": {
+      "progressLabel": "Calculator steps",
+      "steps": {
+        "size": "Size & Layout",
+        "colors": "Finish",
+        "equipment": "Equipment",
+        "installation": "Installation",
+        "summary": "Summary"
+      },
+      "navigation": {
+        "next": "Next Step",
+        "back": "Back",
+        "submit": "Get an Estimate"
+      },
+      "size": {
+        "sectionTitle": "What size is your kitchen space?",
+        "sectionDescription": "Select the footprint that best matches your kitchen dimensions.",
+        "small": {
+          "title": "Small",
+          "description": "Up to 5 m²"
+        },
+        "medium": {
+          "title": "Medium",
+          "description": "5–8 m²"
+        },
+        "large": {
+          "title": "Large",
+          "description": "Over 8 m²"
+        }
+      },
+      "layout": {
+        "sectionTitle": "Choose your preferred layout",
+        "sectionDescription": "Pick the layout that reflects how you move and cook every day.",
+        "linear": {
+          "title": "Linear",
+          "description": "One straight run along a single wall"
+        },
+        "l_shaped": {
+          "title": "L-Shaped",
+          "description": "Two connected runs at a right angle"
+        },
+        "u_shaped": {
+          "title": "U-Shaped",
+          "description": "Three-sided layout for maximum workspace"
+        },
+        "island": {
+          "title": "Island",
+          "description": "Open kitchen with a central island"
+        }
+      },
+      "colors": {
+        "sectionTitle": "Choose your cabinet finish",
+        "sectionDescription": "Choose a finish direction for your fronts and visible surfaces.",
+        "classic_white": {
+          "title": "Classic White",
+          "description": "Timeless, bright, and versatile"
+        },
+        "natural_wood": {
+          "title": "Natural Wood",
+          "description": "Warm tones with a natural oak veneer"
+        },
+        "graphite_grey": {
+          "title": "Graphite Grey",
+          "description": "Clean, modern, and understated"
+        },
+        "anthracite": {
+          "title": "Anthracite",
+          "description": "Bold and dramatic dark finish"
+        }
+      },
+      "equipment": {
+        "worktops": {
+          "sectionTitle": "Choose worktop material",
+          "sectionDescription": "Worktops define durability and visual character. Choose one material.",
+          "laminate": {
+            "title": "Laminate",
+            "description": "Durable and affordable surface"
+          },
+          "quartz": {
+            "title": "Quartz",
+            "description": "Premium engineered stone"
+          },
+          "granite": {
+            "title": "Granite",
+            "description": "Natural stone, luxury finish"
+          }
+        },
+        "plumbing": {
+          "sectionTitle": "Sink & tap package",
+          "sectionDescription": "Select the plumbing package level for sink and tap fixtures.",
+          "standard": {
+            "title": "Standard",
+            "description": "Single-bowl sink with mixer tap"
+          },
+          "premium": {
+            "title": "Premium",
+            "description": "Undermount sink with filtered tap"
+          }
+        },
+        "appliances": {
+          "sectionTitle": "Choose built-in appliances",
+          "sectionDescription": "Add any appliances you want included in your estimate.",
+          "hob": {
+            "title": "Induction Hob",
+            "description": "4-zone induction cooktop"
+          },
+          "oven": {
+            "title": "Built-in Oven",
+            "description": "Multi-function electric oven"
+          },
+          "dishwasher": {
+            "title": "Dishwasher",
+            "description": "Fully integrated dishwasher"
+          },
+          "fridge": {
+            "title": "Refrigerator",
+            "description": "Integrated combi fridge-freezer"
+          }
+        }
+      },
+      "installation": {
+        "sectionTitle": "Select an installation package",
+        "sectionDescription": "Compare installation scope and choose your preferred execution level.",
+        "basic": {
+          "title": "Basic",
+          "description": "Delivery and assembly of cabinets only"
+        },
+        "standard": {
+          "title": "Standard",
+          "description": "Assembly plus plumbing connection"
+        },
+        "premium": {
+          "title": "Premium",
+          "description": "Full turnkey installation with finishing"
+        }
+      },
+      "summary": {
+        "sectionTitle": "Your kitchen estimate",
+        "sectionDescription": "Review your selections and proceed to receive a tailored quote.",
+        "total": "Estimated total",
+        "disclaimer": "Final price may vary following a consultant review",
+        "cta": "Request a Consultation"
+      }
+    }
+  },
+  "UIKit": {
+    "title": "UI Kit / Design System",
+    "description": "Development-only sandbox for validating reusable interface primitives and interaction states.",
+    "calculatorPrimitivesTitle": "Calculator UI Primitives",
+    "cards": {
+      "default": {
+        "title": "Base Kitchen Option",
+        "description": "Unselected state with standard copy and price formatting."
+      },
+      "selected": {
+        "title": "Selected Kitchen Option",
+        "description": "Selected state preview with primary border and ring."
+      },
+      "withImage": {
+        "title": "Card with Image",
+        "description": "Shows media layout with object-cover behavior and semantic hover styles."
+      },
+      "longText": {
+        "title": "Extra Long Card Title for Wrapping Validation Across Multiple Lines in a Responsive Grid",
+        "description": "This edge-case card intentionally uses a long block of text to verify wrapping behavior, vertical rhythm, and visual stability when content density is significantly higher than standard options."
+      }
+    }
   }
 }

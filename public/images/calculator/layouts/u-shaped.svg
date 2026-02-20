@@ -1,0 +1,16 @@
+<svg width="132" height="85" viewBox="0 0 132 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 1H101H131V31V84H101V31H32L32 84H1V31V1Z" fill="white"/>
+    <path d="M1 1V0.5C0.723858 0.5 0.5 0.723858 0.5 1H1ZM131 1H131.5C131.5 0.723858 131.276 0.5 131 0.5V1ZM131 84V84.5C131.276 84.5 131.5 84.2761 131.5 84H131ZM101 84H100.5C100.5 84.2761 100.724 84.5 101 84.5V84ZM101 31H101.5C101.5 30.7239 101.276 30.5 101 30.5V31ZM32 31V30.5C31.7239 30.5 31.5 30.7239 31.5 31H32ZM32 84V84.5C32.2761 84.5 32.5 84.2761 32.5 84H32ZM1 84H0.5C0.5 84.2761 0.723858 84.5 1 84.5V84ZM101 0.5H1V1.5H101V0.5ZM101 1.5H131V0.5H101V1.5ZM130.5 1V31H131.5V1H130.5ZM130.5 31V84H131.5V31H130.5ZM131 83.5H101V84.5H131V83.5ZM101.5 84V31H100.5V84H101.5ZM32 31.5H101V30.5H32V31.5ZM32.5 84L32.5 31H31.5L31.5 84H32.5ZM1 84.5H32V83.5H1V84.5ZM0.5 31V84H1.5V31H0.5ZM0.5 1V31H1.5V1H0.5Z" fill="#0060EF"/>
+    <rect x="45" y="42" width="44" height="30" fill="#EBF3FE"/>
+    <path d="M1 39L32 39" stroke="#0060EF"/>
+    <path d="M1 68L32 68" stroke="#0060EF"/>
+    <path d="M131 55L101 55" stroke="#0060EF"/>
+    <rect x="46" y="7" width="42" height="19" fill="#EBF3FE" stroke="#0060EF" stroke-linejoin="round"/>
+    <rect x="66" y="5" width="2" height="6" fill="#0060EF" stroke="#0060EF" stroke-linejoin="round"/>
+    <circle cx="10.5" cy="47.5" r="4.5" fill="#EBF3FE" stroke="#0060EF"/>
+    <circle cx="10.5" cy="59.5" r="4.5" fill="#EBF3FE" stroke="#0060EF"/>
+    <circle cx="22.5" cy="47.5" r="4.5" fill="#EBF3FE" stroke="#0060EF"/>
+    <circle cx="22.5" cy="59.5" r="4.5" fill="#EBF3FE" stroke="#0060EF"/>
+    <path d="M125.091 72.2727L123.273 69.5454L125.091 66.8182M106.909 66.8182L108.727 69.5454L106.909 72.2727" stroke="#0060EF" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M116 60V63.1818M116 79.5455V76.8182M106 69.5455H126M110.545 64.0909L121.455 75M110.545 75L121.455 64.0909M116 63.1818L118.727 61.3636M116 63.1818L113.273 61.3636M116 63.1818V76.8182M116 76.8182L113.273 78.6364M116 76.8182L118.727 78.6364" stroke="#0060EF" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

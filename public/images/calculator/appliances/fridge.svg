@@ -1,0 +1,16 @@
+<svg width="35" height="62" viewBox="0 0 35 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="3" width="22" height="55" fill="#EBF3FE" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M34 1V40L23 37.92V3.6L34 1Z" fill="white" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M34 39.7273V61L23 56.6364V37L34 39.7273Z" fill="white" stroke="#0060EF" stroke-linejoin="round"/>
+    <rect x="3" y="5" width="18" height="51" fill="white" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M21 35H3V40.5H21V35Z" fill="#BDCFFA" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M21 49H3V54.5H21V49Z" fill="#BDCFFA" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M21 42H3V47.5H21V42Z" fill="#BDCFFA" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M21 22H3V31H21V22Z" fill="#EBF3FE" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M3 20H21" stroke="#0060EF" stroke-linejoin="round"/>
+    <path d="M3 13H21" stroke="#0060EF" stroke-linejoin="round"/>
+    <rect x="6" y="8" width="3" height="5" fill="#0060EF"/>
+    <path d="M23.5 5V36L32.5 38V3L23.5 5Z" fill="#EBF2FE"/>
+    <path d="M23.5 39V55L32.5 58.5V41.2528L23.5 39Z" fill="#EBF2FE"/>
+    <rect x="9" y="9" width="4" height="4" fill="#0060EF"/>
+</svg>

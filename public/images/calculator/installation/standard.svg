@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Nordic Light kitchen">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#dbeafe" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <rect x="120" y="220" width="960" height="320" rx="28" fill="#ffffff" />
+  <rect x="160" y="260" width="300" height="240" rx="16" fill="#e2e8f0" />
+  <rect x="500" y="260" width="520" height="90" rx="12" fill="#cbd5e1" />
+  <rect x="500" y="380" width="520" height="120" rx="12" fill="#94a3b8" />
+</svg>
