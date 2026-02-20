@@ -2,11 +2,14 @@ import Image from 'next/image';
 import {CheckCircle2, ShieldCheck, Zap} from 'lucide-react';
 import {getLocale, getTranslations} from 'next-intl/server';
 
+import {FadeIn} from '@/src/components/animations/fade-in';
+import {ContactForm} from '@/src/components/forms/contact-form';
 import {LanguageSwitcher} from '@/src/components/layout/language-switcher';
-import {routing} from '@/src/i18n/routing';
+import {VideoSection} from '@/src/components/sections/video-section';
+import {routing, type AppLocale} from '@/src/i18n/routing';
 import {Link} from '@/src/i18n/navigation';
-import {kitchenProjects} from '@/src/lib/mock-data/mock-data';
-import {AppLocale} from '@/src/types';
+import {getLocalizedProjectText} from '@/src/lib/projects/projects';
+import {getFeaturedProjects} from '@/src/services/db/projects.service';
 
 export default async function HomePage() {
   const requestLocale = await getLocale();
@@ -21,7 +24,7 @@ export default async function HomePage() {
   const tCta = await getTranslations('CTA');
   const tFooter = await getTranslations('Footer');
 
-  const featuredItems = kitchenProjects.filter((project) => project.isFeature).slice(0, 3);
+  const featuredItems = (await getFeaturedProjects()).slice(0, 3);
   const currencyByLocale: Record<AppLocale, string> = {
     uk: 'UAH',
     pl: 'PLN',
@@ -110,13 +113,14 @@ export default async function HomePage() {
         </section>
 
         <section className="bg-slate-50" id="featured-kitchens">
-          <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
+          <FadeIn className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
             <h2 className="text-3xl font-semibold text-slate-900">{tFeatured('title')}</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {featuredItems.map((project) => {
-                const title = project.title[locale];
-                const description = project.description[locale];
-                const formattedPrice = project.priceStart ? priceFormatter.format(project.priceStart) : null;
+                const {title, description} = getLocalizedProjectText(project, locale);
+                const formattedPrice = project.price_start ? priceFormatter.format(project.price_start) : null;
+                const imageSrc = project.image_url || '/kitchens/nordic-light.svg';
+                const detailsHref = project.slug ? `/kitchens/${project.slug}` : '/catalog';
 
                 return (
                   <article className="overflow-hidden rounded-xl border border-slate-200 bg-white" key={project.id}>
@@ -125,7 +129,7 @@ export default async function HomePage() {
                       className="h-auto w-full"
                       height={800}
                       quality={85}
-                      src={project.images[0]}
+                      src={imageSrc}
                       width={1200}
                     />
                     <div className="space-y-3 p-5">
@@ -136,7 +140,7 @@ export default async function HomePage() {
                           {tFeatured('priceFrom')}: {formattedPrice}
                         </p>
                       ) : null}
-                      <Link className="text-sm font-medium text-slate-900 underline" href={`/kitchens/${project.slug}`}>
+                      <Link className="text-sm font-medium text-slate-900 underline" href={detailsHref}>
                         {tFeatured('catalogButton')}
                       </Link>
                     </div>
@@ -144,20 +148,23 @@ export default async function HomePage() {
                 );
               })}
             </div>
-          </div>
+          </FadeIn>
+        </section>
+
+        <section className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6" id="video">
+          <FadeIn>
+            <VideoSection />
+          </FadeIn>
         </section>
 
         <section id="contacts">
-          <div className="mx-auto w-full max-w-6xl px-4 py-16 text-center md:px-6">
+          <FadeIn className="mx-auto w-full max-w-6xl px-4 py-16 text-center md:px-6">
             <h2 className="text-3xl font-semibold text-slate-900">{tCta('title')}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600">{tCta('subtitle')}</p>
-            <Link
-              className="mt-8 inline-flex rounded-md bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-              href="/#contacts"
-            >
-              {tCta('button')}
-            </Link>
-          </div>
+            <div className="mx-auto mt-8 max-w-3xl text-left">
+              <ContactForm />
+            </div>
+          </FadeIn>
         </section>
       </main>
 
