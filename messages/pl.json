@@ -43,6 +43,12 @@
     "catalogButton": "Zobacz w katalogu",
     "imageAlt": "Model kuchni: {title}"
   },
+  "Catalog": {
+    "title": "Katalog kuchni",
+    "backHome": "Na stronę główną",
+    "imageAlt": "Model kuchni: {title}",
+    "priceFrom": "Od {price}"
+  },
   "CTA": {
     "title": "Gotowi omówić Twój projekt?",
     "subtitle": "Zostaw zapytanie lub skontaktuj się z nami, aby otrzymać bezpłatną konsultację.",

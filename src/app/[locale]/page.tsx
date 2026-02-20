@@ -6,10 +6,10 @@ import {FadeIn} from '@/src/components/animations/fade-in';
 import {ContactForm} from '@/src/components/forms/contact-form';
 import {LanguageSwitcher} from '@/src/components/layout/language-switcher';
 import {VideoSection} from '@/src/components/sections/video-section';
-import {routing} from '@/src/i18n/routing';
+import {routing, type AppLocale} from '@/src/i18n/routing';
 import {Link} from '@/src/i18n/navigation';
-import {kitchenProjects} from '@/src/lib/mock-data/mock-data';
-import {AppLocale} from '@/src/types';
+import {getLocalizedProjectText} from '@/src/lib/projects/projects';
+import {getFeaturedProjects} from '@/src/services/db/projects.service';
 
 export default async function HomePage() {
   const requestLocale = await getLocale();
@@ -24,7 +24,7 @@ export default async function HomePage() {
   const tCta = await getTranslations('CTA');
   const tFooter = await getTranslations('Footer');
 
-  const featuredItems = kitchenProjects.filter((project) => project.isFeature).slice(0, 3);
+  const featuredItems = (await getFeaturedProjects()).slice(0, 3);
   const currencyByLocale: Record<AppLocale, string> = {
     uk: 'UAH',
     pl: 'PLN',
@@ -117,9 +117,10 @@ export default async function HomePage() {
             <h2 className="text-3xl font-semibold text-slate-900">{tFeatured('title')}</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {featuredItems.map((project) => {
-                const title = project.title[locale];
-                const description = project.description[locale];
-                const formattedPrice = project.priceStart ? priceFormatter.format(project.priceStart) : null;
+                const {title, description} = getLocalizedProjectText(project, locale);
+                const formattedPrice = project.price_start ? priceFormatter.format(project.price_start) : null;
+                const imageSrc = project.image_url || '/kitchens/nordic-light.svg';
+                const detailsHref = project.slug ? `/kitchens/${project.slug}` : '/catalog';
 
                 return (
                   <article className="overflow-hidden rounded-xl border border-slate-200 bg-white" key={project.id}>
@@ -128,7 +129,7 @@ export default async function HomePage() {
                       className="h-auto w-full"
                       height={800}
                       quality={85}
-                      src={project.images[0]}
+                      src={imageSrc}
                       width={1200}
                     />
                     <div className="space-y-3 p-5">
@@ -139,7 +140,7 @@ export default async function HomePage() {
                           {tFeatured('priceFrom')}: {formattedPrice}
                         </p>
                       ) : null}
-                      <Link className="text-sm font-medium text-slate-900 underline" href={`/kitchens/${project.slug}`}>
+                      <Link className="text-sm font-medium text-slate-900 underline" href={detailsHref}>
                         {tFeatured('catalogButton')}
                       </Link>
                     </div>
