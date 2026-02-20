@@ -38,7 +38,6 @@ export function LanguageSwitcher() {
   return (
     <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
       <span className="sr-only">Вибір мови</span>
-      Мова
       <select
         aria-label="Вибір мови"
         className="rounded-md border border-slate-300 bg-white px-2 py-1 text-sm"

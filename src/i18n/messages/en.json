@@ -61,5 +61,11 @@
     "catalog": "Kitchen catalog",
     "about": "Company information",
     "contacts": "Contact information"
+  },
+  "Calculator": {
+    "title": "Calculate the cost of your ideal kitchen",
+    "subtitle": "Get an accurate estimate of your future kitchen in just a few minutes",
+    "placeholderTitle": "Calculator Component Placeholder",
+    "placeholderDescription": "The kitchen cost calculator will be implemented here"
   }
 }

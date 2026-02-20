@@ -61,5 +61,11 @@
     "catalog": "Katalog kuchni",
     "about": "Informacje o firmie",
     "contacts": "Informacje kontaktowe"
+  },
+  "Calculator": {
+    "title": "Oblicz koszt swojej idealnej kuchni",
+    "subtitle": "Otrzymaj dokładną wycenę swojej przyszłej kuchni w kilka minut",
+    "placeholderTitle": "Miejsce na kalkulator",
+    "placeholderDescription": "Tutaj zostanie zaimplementowany kalkulator kosztów kuchni"
   }
 }

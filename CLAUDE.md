@@ -123,7 +123,7 @@ src/
 - Translation files: `src/i18n/messages/{uk,pl,en}.json`
 
 **Usage in Components:**
-```typescript
+```tsx
 import {useTranslations} from 'next-intl';
 
 function Component() {
@@ -133,7 +133,7 @@ function Component() {
 ```
 
 **Usage in Server Components:**
-```typescript
+```tsx
 import {getTranslations} from 'next-intl/server';
 
 async function ServerComponent() {
@@ -185,6 +185,10 @@ All images must use Next.js `Image` component:
 - Fetch data directly in Server Components using `async/await`
 - Use `generateStaticParams` for static paths (e.g., catalog pages)
 - Implement ISR with `revalidate` or `use cache` directive for dynamic content
+
+## Shared Rules
+
+See `AGENTS.md` for shared rules that apply to all AI agents in this project. These rules take the same priority as the rules in this file.
 
 ## Critical Standards
 
