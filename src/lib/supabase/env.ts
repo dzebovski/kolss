@@ -1,23 +1,20 @@
+import {getValidatedEnv} from '@/src/lib/config/env.validation';
+
 export function getSupabaseUrl() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  if (!url) {
-    throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL');
-  }
-  return url;
+  const env = getValidatedEnv();
+  return env.NEXT_PUBLIC_SUPABASE_URL;
 }
 
 export function getSupabasePublishableKey() {
-  const key =
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!key) {
-    throw new Error('Missing NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY');
-  }
-
-  return key;
+  const env = getValidatedEnv();
+  return (
+    env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ??
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+    ''
+  );
 }
 
 export function getSupabaseServiceRoleKey() {
-  return process.env.SUPABASE_SERVICE_ROLE_KEY ?? null;
+  const env = getValidatedEnv();
+  return env.SUPABASE_SERVICE_ROLE_KEY ?? null;
 }

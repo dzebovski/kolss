@@ -1,7 +1,7 @@
 'use client';
 
 import {zodResolver} from '@hookform/resolvers/zod';
-import {motion, AnimatePresence} from 'framer-motion';
+import {motion, AnimatePresence, type Variants} from 'framer-motion';
 import {Loader2, Send} from 'lucide-react';
 import {useState} from 'react';
 import {useForm} from 'react-hook-form';
@@ -13,18 +13,19 @@ import {Label} from '@/src/components/ui/label';
 import {Textarea} from '@/src/components/ui/textarea';
 import {contactSchema, type ContactFormValues} from '@/src/lib/validation/contact';
 
-const fieldMotion = {
+const fieldMotion: Variants = {
   hidden: {opacity: 0, y: 16},
   visible: (index: number) => ({
     opacity: 1,
     y: 0,
-    transition: {delay: index * 0.06, duration: 0.35, ease: 'easeOut'}
+    transition: {delay: index * 0.06, duration: 0.35, ease: [0.4, 0, 0.2, 1] as const}
   })
 };
 
 export function ContactForm() {
   const [serverMessage, setServerMessage] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [warnings, setWarnings] = useState<string[]>([]);
   const {
     register,
     handleSubmit,
@@ -47,6 +48,7 @@ export function ContactForm() {
   const onSubmit = async (values: ContactFormValues) => {
     setServerMessage(null);
     setSubmitError(null);
+    setWarnings([]);
 
     const formData = new FormData();
     formData.append('name', values.name);
@@ -67,6 +69,10 @@ export function ContactForm() {
     }
 
     setServerMessage(result.message);
+    if (result.warnings && result.warnings.length > 0) {
+      setWarnings(result.warnings);
+    }
+
     reset({
       name: '',
       phone: '',
@@ -168,6 +174,24 @@ export function ContactForm() {
           >
             {serverMessage}
           </motion.p>
+        ) : null}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {warnings.length > 0 ? (
+          <motion.div
+            animate={{opacity: 1, y: 0}}
+            className="mt-3 rounded-md bg-amber-50 px-4 py-3 text-sm text-amber-800"
+            exit={{opacity: 0, y: -8}}
+            initial={{opacity: 0, y: 8}}
+          >
+            <p className="font-medium">Увага:</p>
+            <ul className="mt-1 list-inside list-disc space-y-1">
+              {warnings.map((warning, idx) => (
+                <li key={idx}>{warning}</li>
+              ))}
+            </ul>
+          </motion.div>
         ) : null}
       </AnimatePresence>
 

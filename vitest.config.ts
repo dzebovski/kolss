@@ -9,7 +9,7 @@ export default defineConfig({
         globals: true,
         setupFiles: './tests/setup.ts',
         include: ['src/__tests__/**/*.test.(ts|tsx)'],
-        exclude: ['tests/**', 'playwrite/**', 'playwright-report/**'],
+        exclude: ['tests/**', 'playwright/**', 'playwright-report/**'],
     },
     resolve: {
         alias: {
