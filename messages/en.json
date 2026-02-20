@@ -43,6 +43,12 @@
     "catalogButton": "View in catalog",
     "imageAlt": "Kitchen model: {title}"
   },
+  "Catalog": {
+    "title": "Kitchen Catalog",
+    "backHome": "Back to home",
+    "imageAlt": "Kitchen model: {title}",
+    "priceFrom": "From {price}"
+  },
   "CTA": {
     "title": "Ready to discuss your project?",
     "subtitle": "Leave a request or contact us for a free consultation.",
