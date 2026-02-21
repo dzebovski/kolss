@@ -212,6 +212,79 @@
       }
     }
   },
+  "ContactForm": {
+    "title": "Zostaw zapytanie",
+    "subtitle": "Odpowiemy w godzinach pracy i zaproponujemy najlepsze rozwiązanie dla Twojej kuchni.",
+    "fields": {
+      "name": {
+        "label": "Imię",
+        "placeholder": "Twoje imię"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "+380 ..."
+      },
+      "email": {
+        "label": "Email (opcjonalnie)",
+        "placeholder": "name@email.com"
+      },
+      "budget": {
+        "label": "Szacowany budżet",
+        "placeholder": "Np. 3000$"
+      },
+      "preferredContact": {
+        "label": "Preferowany kanał kontaktu",
+        "options": {
+          "phone": "Telefon",
+          "telegram": "Telegram",
+          "email": "Email"
+        }
+      },
+      "message": {
+        "label": "Twoje zapytanie",
+        "placeholder": "Opisz swoją kuchnię, styl i termin realizacji..."
+      },
+      "file": {
+        "label": "Plik (plan, zdjęcie, przykład)"
+      }
+    },
+    "errors": {
+      "name": "Podaj imię",
+      "phone": "Podaj numer telefonu",
+      "email": "Nieprawidłowy email",
+      "message": "Krótko opisz swoje zapytanie",
+      "preferredContact": "Wybierz preferowany kanał kontaktu"
+    },
+    "submit": {
+      "loading": "Wysyłamy...",
+      "idle": "Wyślij zapytanie"
+    },
+    "warningsTitle": "Uwaga:"
+  },
+  "ContactAction": {
+    "validation": {
+      "invalidForm": "Sprawdź poprawność pól formularza i spróbuj ponownie."
+    },
+    "warnings": {
+      "failedIntegrations": "Nie udało się wysłać powiadomienia do: {integrations}",
+      "noIntegrations": "Integracje nie są skonfigurowane. Zapytanie zostało zapisane w bazie danych."
+    },
+    "success": {
+      "partial": "Zapytanie zostało zapisane. Menedżer je sprawdzi i skontaktuje się z Tobą.",
+      "full": "Dziękujemy! Menedżer skontaktuje się z Tobą wkrótce."
+    },
+    "errors": {
+      "submitFailed": "Wystąpił błąd podczas wysyłania zapytania. Spróbuj ponownie.",
+      "invalidFormData": "Nieprawidłowe dane formularza. Sprawdź pola i spróbuj ponownie."
+    }
+  },
+  "VideoSection": {
+    "title": "Dynamiczne spojrzenie na nasze realizacje",
+    "description": "Zobacz wideo z projektami kuchni, aby ocenić materiały, geometrię i jakość detali.",
+    "openButton": "Otwórz wideo",
+    "dialogTitle": "Przegląd wideo kuchni",
+    "dialogDescription": "Prezentacja materiałów, okuć i gotowych rozwiązań."
+  },
   "UIKit": {
     "title": "UI Kit / System projektowy",
     "description": "Piaskownica tylko do developmentu do weryfikacji wielokrotnego użytku komponentów i stanów interakcji.",

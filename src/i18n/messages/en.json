@@ -212,6 +212,79 @@
       }
     }
   },
+  "ContactForm": {
+    "title": "Request a consultation",
+    "subtitle": "We will respond during business hours and suggest the best solution for your kitchen.",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "+380 ..."
+      },
+      "email": {
+        "label": "Email (optional)",
+        "placeholder": "name@email.com"
+      },
+      "budget": {
+        "label": "Estimated budget",
+        "placeholder": "E.g. 3000$"
+      },
+      "preferredContact": {
+        "label": "Preferred contact channel",
+        "options": {
+          "phone": "Phone",
+          "telegram": "Telegram",
+          "email": "Email"
+        }
+      },
+      "message": {
+        "label": "Your request",
+        "placeholder": "Describe your kitchen, style, and timeline..."
+      },
+      "file": {
+        "label": "File (plan, photo, reference)"
+      }
+    },
+    "errors": {
+      "name": "Please enter your name",
+      "phone": "Please enter your phone number",
+      "email": "Please enter a valid email",
+      "message": "Please describe your request briefly",
+      "preferredContact": "Please select a contact channel"
+    },
+    "submit": {
+      "loading": "Sending...",
+      "idle": "Send request"
+    },
+    "warningsTitle": "Attention:"
+  },
+  "ContactAction": {
+    "validation": {
+      "invalidForm": "Please check the form fields and try again."
+    },
+    "warnings": {
+      "failedIntegrations": "Failed to deliver notification to: {integrations}",
+      "noIntegrations": "Integrations are not configured. Your request was saved to the database."
+    },
+    "success": {
+      "partial": "Your request has been saved. A manager will review it and contact you shortly.",
+      "full": "Thank you! A manager will contact you shortly."
+    },
+    "errors": {
+      "submitFailed": "Something went wrong while submitting the request. Please try again.",
+      "invalidFormData": "Invalid form data. Please check your fields and try again."
+    }
+  },
+  "VideoSection": {
+    "title": "A dynamic look at our work",
+    "description": "Watch a short video with kitchen projects to evaluate materials, geometry, and attention to detail.",
+    "openButton": "Open video",
+    "dialogTitle": "Kitchen video overview",
+    "dialogDescription": "A showcase of materials, fittings, and completed solutions."
+  },
   "UIKit": {
     "title": "UI Kit / Design System",
     "description": "Development-only sandbox for validating reusable interface primitives and interaction states.",

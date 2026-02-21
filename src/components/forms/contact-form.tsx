@@ -3,6 +3,7 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {motion, AnimatePresence, type Variants} from 'framer-motion';
 import {Loader2, Send} from 'lucide-react';
+import {useTranslations} from 'next-intl';
 import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
@@ -23,6 +24,7 @@ const fieldMotion: Variants = {
 };
 
 export function ContactForm() {
+  const t = useTranslations('ContactForm');
   const [serverMessage, setServerMessage] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
@@ -86,57 +88,55 @@ export function ContactForm() {
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm md:p-8" data-testid="contact-form">
-      <h3 className="text-2xl font-semibold text-slate-900">Залишити заявку</h3>
-      <p className="mt-2 text-sm text-slate-600">Відповімо в робочий час та запропонуємо найкраще рішення для вашої кухні.</p>
+      <h3 className="text-2xl font-semibold text-slate-900">{t('title')}</h3>
+      <p className="mt-2 text-sm text-slate-600">{t('subtitle')}</p>
 
       <form className="mt-6 space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={0}>
-          <Label htmlFor="name">Імʼя</Label>
-          <Input id="name" placeholder="Ваше імʼя" {...register('name')} />
-          {errors.name ? <p className="mt-1 text-xs text-red-600">{errors.name.message}</p> : null}
+          <Label htmlFor="name">{t('fields.name.label')}</Label>
+          <Input id="name" placeholder={t('fields.name.placeholder')} {...register('name')} />
+          {errors.name ? <p className="mt-1 text-xs text-red-600">{t('errors.name')}</p> : null}
         </motion.div>
 
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={1}>
-          <Label htmlFor="phone">Телефон</Label>
-          <Input id="phone" placeholder="+380 ..." {...register('phone')} />
-          {errors.phone ? <p className="mt-1 text-xs text-red-600">{errors.phone.message}</p> : null}
+          <Label htmlFor="phone">{t('fields.phone.label')}</Label>
+          <Input id="phone" placeholder={t('fields.phone.placeholder')} {...register('phone')} />
+          {errors.phone ? <p className="mt-1 text-xs text-red-600">{t('errors.phone')}</p> : null}
         </motion.div>
 
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={2}>
-          <Label htmlFor="email">Email (необов&apos;язково)</Label>
+          <Label htmlFor="email">{t('fields.email.label')}</Label>
           <Input id="email" placeholder="name@email.com" type="email" {...register('email')} />
-          {errors.email ? <p className="mt-1 text-xs text-red-600">{errors.email.message}</p> : null}
+          {errors.email ? <p className="mt-1 text-xs text-red-600">{t('errors.email')}</p> : null}
         </motion.div>
 
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={3}>
-          <Label htmlFor="budget">Орієнтовний бюджет</Label>
-          <Input id="budget" placeholder="Напр. 3000$" {...register('budget')} />
+          <Label htmlFor="budget">{t('fields.budget.label')}</Label>
+          <Input id="budget" placeholder={t('fields.budget.placeholder')} {...register('budget')} />
         </motion.div>
 
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={4}>
-          <Label htmlFor="preferredContact">Зручний канал звʼязку</Label>
+          <Label htmlFor="preferredContact">{t('fields.preferredContact.label')}</Label>
           <select
             id="preferredContact"
             className="flex h-10 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
             {...register('preferredContact')}
           >
-            <option value="phone">Телефон</option>
-            <option value="telegram">Telegram</option>
-            <option value="email">Email</option>
+            <option value="phone">{t('fields.preferredContact.options.phone')}</option>
+            <option value="telegram">{t('fields.preferredContact.options.telegram')}</option>
+            <option value="email">{t('fields.preferredContact.options.email')}</option>
           </select>
-          {errors.preferredContact ? (
-            <p className="mt-1 text-xs text-red-600">{errors.preferredContact.message}</p>
-          ) : null}
+          {errors.preferredContact ? <p className="mt-1 text-xs text-red-600">{t('errors.preferredContact')}</p> : null}
         </motion.div>
 
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={5}>
-          <Label htmlFor="message">Ваш запит</Label>
-          <Textarea id="message" placeholder="Опишіть вашу кухню, стиль, терміни..." {...register('message')} />
-          {errors.message ? <p className="mt-1 text-xs text-red-600">{errors.message.message}</p> : null}
+          <Label htmlFor="message">{t('fields.message.label')}</Label>
+          <Textarea id="message" placeholder={t('fields.message.placeholder')} {...register('message')} />
+          {errors.message ? <p className="mt-1 text-xs text-red-600">{t('errors.message')}</p> : null}
         </motion.div>
 
         <motion.div animate="visible" initial="hidden" variants={fieldMotion} custom={6}>
-          <Label htmlFor="file">Файл (план, фото, приклад)</Label>
+          <Label htmlFor="file">{t('fields.file.label')}</Label>
           <Input
             id="file"
             type="file"
@@ -152,12 +152,12 @@ export function ContactForm() {
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Відправляємо...
+                {t('submit.loading')}
               </>
             ) : (
               <>
                 <Send className="h-4 w-4" />
-                Надіслати заявку
+                {t('submit.idle')}
               </>
             )}
           </Button>
@@ -185,7 +185,7 @@ export function ContactForm() {
             exit={{opacity: 0, y: -8}}
             initial={{opacity: 0, y: 8}}
           >
-            <p className="font-medium">Увага:</p>
+            <p className="font-medium">{t('warningsTitle')}</p>
             <ul className="mt-1 list-inside list-disc space-y-1">
               {warnings.map((warning, idx) => (
                 <li key={idx}>{warning}</li>

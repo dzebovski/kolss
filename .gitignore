@@ -60,3 +60,6 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 /_user-copy-here/
+
+# plans
+/plans/

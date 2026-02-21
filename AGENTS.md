@@ -33,3 +33,13 @@ After adding or editing translations, confirm:
 - [ ] Key exists in `pl.json`
 - [ ] Key exists in `en.json`
 - [ ] All 3 translations are meaningful (not placeholder or copy-pasted from another language)
+
+## Safety Rules
+
+- **Destructive Commands**: Set `"rm -rf *": "deny"`. AI agents must strictly avoid running destructive commands like `rm -rf *` to prevent accidental data loss.
+
+## Planning & Context Management
+
+- **Complex Tasks**: For multi-step tasks or when explicitly asked to "plan", look for or create a tracking document in the `/plans/` directory.
+- **Source of Truth**: The active plan file in `/plans/` is the single source of truth for the task status, context, and next steps. Always read it before starting work and update it after completing steps.
+- **Naming**: Use `YYYY-MM-DD-task-slug.md` format.

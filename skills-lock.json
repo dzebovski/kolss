@@ -11,15 +11,25 @@
       "sourceType": "github",
       "computedHash": "c33c2e51eac1a90e094407dfd61457ec7c3ba3fa9587e7389b747ea90c7bb0eb"
     },
+    "implement-design": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "aebdbdb64e8457825736d85ece85213abe82d43bc6a7193b4a85be079147bdab"
+    },
     "interface-design": {
       "source": "Dammyjay93/interface-design",
       "sourceType": "github",
       "computedHash": "d004c5e5e2e7132e1d64e9c2a339db7f7aaa69053a5c19cddc210dd35dd6fff5"
     },
     "shadcn-ui": {
-      "source": "giuseppe-trisciuoglio/developer-kit",
+      "source": "jezweb/claude-skills",
       "sourceType": "github",
-      "computedHash": "fc286bef24c7ed9f6d22410ee524b3a83cc38825fb06313d46b5b13a90454135"
+      "computedHash": "4f74aeb3aa54c707658a6d942995a3093cfee945281bb2850908013a36b7fd09"
+    },
+    "tailwind-theme-builder": {
+      "source": "jezweb/claude-skills",
+      "sourceType": "github",
+      "computedHash": "5f3b657551b778443613bd41631cfce2fd4159f77c98df3d511c45c275122c15"
     },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",

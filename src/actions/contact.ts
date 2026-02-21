@@ -1,5 +1,7 @@
 'use server';
 
+import {getLocale, getTranslations} from 'next-intl/server';
+
 import {getIntegrationStatus} from '@/src/lib/config/env.validation';
 import {contactSchema, type ContactFormValues} from '@/src/lib/validation/contact';
 import {saveLeadToDatabase} from '@/src/services/db/leads.service';
@@ -27,12 +29,14 @@ function normalizeText(value: string | null | undefined) {
 
 export async function submitContact(values: ContactFormValues): Promise<ContactActionState> {
   try {
+    const locale = await getLocale();
+    const t = await getTranslations({locale, namespace: 'ContactAction'});
     const validated = contactSchema.safeParse(values);
 
     if (!validated.success) {
       return {
         success: false,
-        message: 'Перевірте правильність заповнення форми',
+        message: t('validation.invalidForm'),
         errors: validated.error.flatten().fieldErrors
       };
     }
@@ -133,29 +137,32 @@ export async function submitContact(values: ContactFormValues): Promise<ContactA
     }
 
     if (failedIntegrations.length > 0) {
-      warnings.push(`Не вдалося надіслати повідомлення до: ${failedIntegrations.join(', ')}`);
+      warnings.push(t('warnings.failedIntegrations', {integrations: failedIntegrations.join(', ')}));
     }
 
     // If no integrations are configured, warn about it
     const anyConfigured = Object.values(configuredIntegrations).some(v => v);
     if (!anyConfigured) {
-      warnings.push('Інтеграції не налаштовані. Заявка збережена в базі даних.');
+      warnings.push(t('warnings.noIntegrations'));
     }
 
     // Success if saved to database, even if some integrations failed
     return {
       success: true,
       message: failedIntegrations.length > 0
-        ? 'Заявку збережено! Менеджер отримає її та звʼяжеться з вами.'
-        : 'Дякуємо! Менеджер звʼяжеться з вами',
+        ? t('success.partial')
+        : t('success.full'),
       warnings: warnings.length > 0 ? warnings : undefined,
       integrationStatus
     };
   } catch (error) {
     console.error('[contact] submit failed:', error);
+    const locale = await getLocale().catch(() => 'en');
+    const t = await getTranslations({locale, namespace: 'ContactAction'}).catch(() => null);
+
     return {
       success: false,
-      message: 'Сталася помилка при відправці заявки. Спробуйте ще раз.'
+      message: t?.('errors.submitFailed') ?? 'Something went wrong while submitting the form. Please try again.'
     };
   }
 }
@@ -179,9 +186,12 @@ export async function submitContactFromFormData(formData: FormData): Promise<Con
     });
   } catch (error) {
     console.error('[contact] formData transform failed:', error);
+    const locale = await getLocale().catch(() => 'en');
+    const t = await getTranslations({locale, namespace: 'ContactAction'}).catch(() => null);
+
     return {
       success: false,
-      message: 'Невалідні дані форми. Перевірте поля і спробуйте ще раз.'
+      message: t?.('errors.invalidFormData') ?? 'Invalid form data. Please check your fields and try again.'
     };
   }
 }
