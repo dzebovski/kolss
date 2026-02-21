@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import {type ReactNode, useEffect, useState} from 'react';
 import {useForm, useWatch} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useTranslations} from 'next-intl';
@@ -24,6 +24,7 @@ import {SelectableCard} from './ui/SelectableCard';
 import {CalculatorSectionHeader} from './ui/CalculatorSectionHeader';
 import {WizardProgress} from './ui/WizardProgress';
 import {Button} from '@/src/components/ui/button';
+import {Card, CardContent, CardHeader} from '@/components/ui/card';
 
 // ─── Step label keys (maps step index → translation key) ─────────────────────
 
@@ -36,9 +37,27 @@ const STEP_LABELS: Record<number, string> = {
 };
 
 const SECTION_CARD_CLASS =
-  'rounded-2xl border border-border/80 bg-background/70 p-4 shadow-sm sm:p-5 md:p-6';
+  'rounded-2xl border border-border/80 bg-background/80 shadow-sm';
 const CALCULATOR_STORAGE_KEY = 'kitchen-calculator:v1';
 const EMPTY_APPLIANCE_IDS: ApplianceId[] = [];
+
+interface StepSectionProps {
+  id: string;
+  title: string;
+  description?: string;
+  children: ReactNode;
+}
+
+const StepSection = ({id, title, description, children}: StepSectionProps) => (
+  <section aria-labelledby={id}>
+    <Card className={SECTION_CARD_CLASS}>
+      <CardHeader className="p-4 pb-0 sm:p-5 sm:pb-0 md:p-6 md:pb-0">
+        <CalculatorSectionHeader id={id} title={title} description={description} className="mb-0" />
+      </CardHeader>
+      <CardContent className="p-4 pt-4 sm:p-5 sm:pt-4 md:p-6 md:pt-4">{children}</CardContent>
+    </Card>
+  </section>
+);
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -165,39 +184,41 @@ export const CalculatorWizard = () => {
   // ─── Render ────────────────────────────────────────────────────────────────
 
   return (
-    <div className="w-full rounded-3xl border border-border/80 bg-card/70 p-4 shadow-sm sm:p-6 lg:p-8">
-      <header className="mb-6 space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          {t('wizard.progressLabel')}
-        </p>
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-          {activeStepLabel}
-        </h2>
-      </header>
+    <Card className="w-full rounded-3xl border border-border/80 bg-card/80 shadow-lg">
+      <CardHeader className="p-4 pb-6 sm:p-6 sm:pb-6 lg:p-8 lg:pb-7">
+        <header className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {t('wizard.progressLabel')}
+          </p>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            {activeStepLabel}
+          </h2>
+        </header>
+      </CardHeader>
 
-      <WizardProgress
-        currentStep={currentStep}
-        totalSteps={TOTAL_STEPS}
-        labels={stepLabels}
-        progressLabel={t('wizard.progressLabel')}
-      />
+      <CardContent className="space-y-8 p-4 pt-0 sm:p-6 sm:pt-0 lg:p-8 lg:pt-0">
+        <WizardProgress
+          currentStep={currentStep}
+          totalSteps={TOTAL_STEPS}
+          labels={stepLabels}
+          progressLabel={t('wizard.progressLabel')}
+        />
 
-      {/* ── Step content ── */}
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-8">
+        {/* ── Step content ── */}
+        <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-8">
         {/* STEP 1: Size & Layout */}
         {currentStep === 1 && (
           <div className="space-y-6">
             {/* Size group */}
-            <section aria-labelledby="size-heading" className={SECTION_CARD_CLASS}>
-              <CalculatorSectionHeader
-                id="size-heading"
-                title={t('wizard.size.sectionTitle')}
-                description={t('wizard.size.sectionDescription')}
-              />
+            <StepSection
+              id="size-heading"
+              title={t('wizard.size.sectionTitle')}
+              description={t('wizard.size.sectionDescription')}
+            >
               <div
                 role="radiogroup"
                 aria-labelledby="size-heading"
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3"
               >
                 {CALCULATOR_CONFIG.step1_size.items.map(item => (
                   <SelectableCard
@@ -216,19 +237,18 @@ export const CalculatorWizard = () => {
                   {form.formState.errors.sizeId.message}
                 </p>
               )}
-            </section>
+            </StepSection>
 
             {/* Layout group */}
-            <section aria-labelledby="layout-heading" className={SECTION_CARD_CLASS}>
-              <CalculatorSectionHeader
-                id="layout-heading"
-                title={t('wizard.layout.sectionTitle')}
-                description={t('wizard.layout.sectionDescription')}
-              />
+            <StepSection
+              id="layout-heading"
+              title={t('wizard.layout.sectionTitle')}
+              description={t('wizard.layout.sectionDescription')}
+            >
               <div
                 role="radiogroup"
                 aria-labelledby="layout-heading"
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-4"
               >
                 {CALCULATOR_CONFIG.step1_layout.items.map(item => (
                   <SelectableCard
@@ -249,22 +269,21 @@ export const CalculatorWizard = () => {
                   {form.formState.errors.layoutId.message}
                 </p>
               )}
-            </section>
+            </StepSection>
           </div>
         )}
 
         {/* STEP 2: Colors — scaffold */}
         {currentStep === 2 && (
-          <section aria-labelledby="colors-heading" className={SECTION_CARD_CLASS}>
-            <CalculatorSectionHeader
-              id="colors-heading"
-              title={t('wizard.colors.sectionTitle')}
-              description={t('wizard.colors.sectionDescription')}
-            />
+          <StepSection
+            id="colors-heading"
+            title={t('wizard.colors.sectionTitle')}
+            description={t('wizard.colors.sectionDescription')}
+          >
             <div
               role="radiogroup"
               aria-labelledby="colors-heading"
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-4"
             >
               {CALCULATOR_CONFIG.step2_colors.items.map(item => (
                 <SelectableCard
@@ -280,22 +299,21 @@ export const CalculatorWizard = () => {
                 />
               ))}
             </div>
-          </section>
+          </StepSection>
         )}
 
         {/* STEP 3: Equipment — scaffold */}
         {currentStep === 3 && (
           <div className="space-y-6">
-            <section aria-labelledby="worktops-heading" className={SECTION_CARD_CLASS}>
-              <CalculatorSectionHeader
-                id="worktops-heading"
-                title={t('wizard.equipment.worktops.sectionTitle')}
-                description={t('wizard.equipment.worktops.sectionDescription')}
-              />
+            <StepSection
+              id="worktops-heading"
+              title={t('wizard.equipment.worktops.sectionTitle')}
+              description={t('wizard.equipment.worktops.sectionDescription')}
+            >
               <div
                 role="radiogroup"
                 aria-labelledby="worktops-heading"
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3"
               >
                 {CALCULATOR_CONFIG.step3_equipment.worktops.items.map(item => (
                   <SelectableCard
@@ -311,18 +329,17 @@ export const CalculatorWizard = () => {
                   />
                 ))}
               </div>
-            </section>
+            </StepSection>
 
-            <section aria-labelledby="plumbing-heading" className={SECTION_CARD_CLASS}>
-              <CalculatorSectionHeader
-                id="plumbing-heading"
-                title={t('wizard.equipment.plumbing.sectionTitle')}
-                description={t('wizard.equipment.plumbing.sectionDescription')}
-              />
+            <StepSection
+              id="plumbing-heading"
+              title={t('wizard.equipment.plumbing.sectionTitle')}
+              description={t('wizard.equipment.plumbing.sectionDescription')}
+            >
               <div
                 role="radiogroup"
                 aria-labelledby="plumbing-heading"
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5"
               >
                 {CALCULATOR_CONFIG.step3_equipment.plumbing.items.map(item => (
                   <SelectableCard
@@ -338,18 +355,17 @@ export const CalculatorWizard = () => {
                   />
                 ))}
               </div>
-            </section>
+            </StepSection>
 
-            <section aria-labelledby="appliances-heading" className={SECTION_CARD_CLASS}>
-              <CalculatorSectionHeader
-                id="appliances-heading"
-                title={t('wizard.equipment.appliances.sectionTitle')}
-                description={t('wizard.equipment.appliances.sectionDescription')}
-              />
+            <StepSection
+              id="appliances-heading"
+              title={t('wizard.equipment.appliances.sectionTitle')}
+              description={t('wizard.equipment.appliances.sectionDescription')}
+            >
               <div
                 role="group"
                 aria-labelledby="appliances-heading"
-                className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-4"
               >
                 {CALCULATOR_CONFIG.step3_equipment.appliances.items.map(item => {
                   const isSelected = applianceIds.includes(item.id as ApplianceId);
@@ -377,22 +393,21 @@ export const CalculatorWizard = () => {
                   );
                 })}
               </div>
-            </section>
+            </StepSection>
           </div>
         )}
 
         {/* STEP 4: Installation — scaffold */}
         {currentStep === 4 && (
-          <section aria-labelledby="installation-heading" className={SECTION_CARD_CLASS}>
-            <CalculatorSectionHeader
-              id="installation-heading"
-              title={t('wizard.installation.sectionTitle')}
-              description={t('wizard.installation.sectionDescription')}
-            />
+          <StepSection
+            id="installation-heading"
+            title={t('wizard.installation.sectionTitle')}
+            description={t('wizard.installation.sectionDescription')}
+          >
             <div
               role="radiogroup"
               aria-labelledby="installation-heading"
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3"
             >
               {CALCULATOR_CONFIG.step4_installation.items.map(item => (
                 <SelectableCard
@@ -408,21 +423,20 @@ export const CalculatorWizard = () => {
                 />
               ))}
             </div>
-          </section>
+          </StepSection>
         )}
 
         {/* STEP 5: Summary — scaffold */}
         {currentStep === 5 && (
-          <section aria-labelledby="summary-heading" className={SECTION_CARD_CLASS}>
-            <CalculatorSectionHeader
-              id="summary-heading"
-              title={t('wizard.summary.sectionTitle')}
-              description={t('wizard.summary.sectionDescription')}
-            />
+          <StepSection
+            id="summary-heading"
+            title={t('wizard.summary.sectionTitle')}
+            description={t('wizard.summary.sectionDescription')}
+          >
             <p className="text-sm leading-relaxed text-muted-foreground">
               {t('wizard.summary.disclaimer')}
             </p>
-          </section>
+          </StepSection>
         )}
 
         {/* ── Navigation ── */}
@@ -453,7 +467,8 @@ export const CalculatorWizard = () => {
             </Button>
           )}
         </div>
-      </form>
-    </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 };

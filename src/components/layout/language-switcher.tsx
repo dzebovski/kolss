@@ -1,53 +1,74 @@
 'use client';
 
-import {ChangeEvent} from 'react';
-import {useParams, usePathname, useRouter} from 'next/navigation';
+import {useLocale, useTranslations} from 'next-intl';
+
+import {usePathname, useRouter} from '@/src/i18n/navigation';
+
+import {Button} from '@/src/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
 const locales = ['uk', 'pl', 'en'] as const;
 type Locale = (typeof locales)[number];
 
-function toLocalePath(pathname: string, nextLocale: Locale) {
-  const segments = pathname.split('/').filter(Boolean);
+const flagByLocale: Record<Locale, string> = {
+  uk: '🇺🇦',
+  pl: '🇵🇱',
+  en: '🇬🇧'
+};
 
-  if (segments.length === 0) {
-    return `/${nextLocale}`;
-  }
-
-  if (locales.includes(segments[0] as Locale)) {
-    segments[0] = nextLocale;
-    return `/${segments.join('/')}`;
-  }
-
-  return `/${nextLocale}/${segments.join('/')}`;
+function isLocale(s: string): s is Locale {
+  return locales.includes(s as Locale);
 }
 
 export function LanguageSwitcher() {
-  const params = useParams<{locale?: string}>();
+  const t = useTranslations('LanguageSwitcher');
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
 
-  const locale = locales.includes((params?.locale ?? '') as Locale)
-    ? ((params?.locale as Locale) ?? 'uk')
-    : 'uk';
+  const currentLocale = isLocale(locale) ? locale : 'uk';
 
-  const onChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const nextLocale = event.target.value as Locale;
-    router.push(toLocalePath(pathname, nextLocale));
+  const handleLocaleChange = (nextLocale: Locale) => {
+    router.replace(pathname, {locale: nextLocale});
   };
 
   return (
-    <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
-      <span className="sr-only">Вибір мови</span>
-      <select
-        aria-label="Вибір мови"
-        className="rounded-md border border-slate-300 bg-white px-2 py-1 text-sm"
-        onChange={onChange}
-        value={locale}
-      >
-        <option value="uk">🇺🇦 Українська</option>
-        <option value="pl">🇵🇱 Polski</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-    </label>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          aria-label={t('localeLabel')}
+          className="min-w-[10rem] justify-start gap-2 text-slate-700 hover:text-slate-900"
+        >
+          <span className="text-lg leading-none" aria-hidden>
+            {flagByLocale[currentLocale]}
+          </span>
+          {t(currentLocale)}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-40" align="start">
+        <DropdownMenuGroup>
+          {(locales as readonly Locale[]).map((loc) => (
+            <DropdownMenuCheckboxItem
+              key={loc}
+              checked={currentLocale === loc}
+              onCheckedChange={() => handleLocaleChange(loc)}
+            >
+              <span className="mr-2 text-base leading-none" aria-hidden>
+                {flagByLocale[loc]}
+              </span>
+              {t(loc)}
+            </DropdownMenuCheckboxItem>
+          ))}
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
