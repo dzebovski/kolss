@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { CSSProperties } from "react";
+import { Geist, Geist_Mono, Lora } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -12,6 +13,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin", "latin-ext"],
 });
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin", "latin-ext"],
+});
+
+const headingFontStyle = {
+  "--font-heading": lora.style.fontFamily,
+} as CSSProperties;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -60,7 +70,8 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} h-full antialiased`}
+      style={headingFontStyle}
     >
       <body className="min-h-full bg-background text-foreground">
         {children}
