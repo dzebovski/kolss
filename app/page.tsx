@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HomeCatalog } from "@/app/_components/home-catalog";
 import { SiteHeader } from "@/app/_components/site-header";
 import heroImage from "@/assets/images/home/hero.desktop.jpg";
 import { absoluteUrl, mainNavigation, siteConfig } from "@/lib/site";
@@ -222,6 +223,8 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          <HomeCatalog />
 
           <section
             id="wiedza"
