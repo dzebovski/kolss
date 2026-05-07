@@ -1,4 +1,7 @@
-import Image, { type StaticImageData } from "next/image";
+import {
+  KitchenCarousel,
+  type KitchenCarouselCollection,
+} from "@/app/_components/kitchen-carousel";
 import floresDetailsOne from "@/assets/images/kitchens/flores/flores-details-1.jpg";
 import floresDetailsTwo from "@/assets/images/kitchens/flores/flores-details-2.jpg";
 import floresMain from "@/assets/images/kitchens/flores/flores-main.desktop.jpg";
@@ -9,21 +12,7 @@ import notaDetailsOne from "@/assets/images/kitchens/nota/nota-details-1.jpg";
 import notaDetailsTwo from "@/assets/images/kitchens/nota/nota-details-2.jpg";
 import notaMain from "@/assets/images/kitchens/nota/nota-main.desktop.jpg";
 
-type KitchenDetail = {
-  image: StaticImageData;
-  alt: string;
-  caption: string;
-};
-
-type KitchenCollection = {
-  title: string;
-  subtitle: string;
-  image: StaticImageData;
-  alt: string;
-  details: [KitchenDetail, KitchenDetail];
-};
-
-const kitchenCollections: KitchenCollection[] = [
+const kitchenCollections: KitchenCarouselCollection[] = [
   {
     title: "Kolekcja Light",
     subtitle: "Kuchnie modułowe, biała baza.",
@@ -107,61 +96,7 @@ export function HomeCatalog() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-14 sm:mt-16 sm:gap-16 lg:mt-[4.5rem] lg:gap-20">
-          {kitchenCollections.map((collection) => (
-            <article
-              key={collection.title}
-              aria-labelledby={`${collection.title
-                .toLowerCase()
-                .replaceAll(" ", "-")}-title`}
-            >
-              <div className="mb-6">
-                <h3
-                  id={`${collection.title
-                    .toLowerCase()
-                    .replaceAll(" ", "-")}-title`}
-                  className="text-[34px] font-bold leading-[1.02] text-foreground sm:text-[40px] lg:text-[46px]"
-                >
-                  {collection.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-[1.4] text-foreground sm:text-base">
-                  {collection.subtitle}
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:gap-5 md:grid-cols-3 lg:gap-10">
-                <div className="relative aspect-[4/5] overflow-hidden bg-muted-surface">
-                  <Image
-                    src={collection.image}
-                    alt={collection.alt}
-                    fill
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 33vw, 30vw"
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="grid gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:contents">
-                  {collection.details.map((detail) => (
-                    <figure key={detail.caption} className="min-w-0">
-                      <div className="relative aspect-square overflow-hidden bg-muted-surface">
-                        <Image
-                          src={detail.image}
-                          alt={detail.alt}
-                          fill
-                          sizes="(max-width: 419px) 100vw, (max-width: 767px) 50vw, (max-width: 1023px) 33vw, 30vw"
-                          className="object-cover"
-                        />
-                      </div>
-                      <figcaption className="mt-4 text-[15px] leading-[1.25] text-foreground sm:text-base sm:leading-[1.28]">
-                        {detail.caption}
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        <KitchenCarousel collections={kitchenCollections} />
       </div>
     </section>
   );
