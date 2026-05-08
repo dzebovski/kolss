@@ -1,5 +1,11 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import {
+  IconBuildingStore,
+  IconMail,
+  IconMapPin,
+  IconPhone,
+} from "@tabler/icons-react";
 import { HomeCatalog } from "@/app/_components/home-catalog";
 import { SiteHeader } from "@/app/_components/site-header";
 import heroImage from "@/assets/images/home/hero.desktop.jpg";
@@ -28,11 +34,6 @@ const contact = {
   phoneHref: "tel:+48510700913",
   email: "biuro@kolss.eu",
   emailHref: "mailto:biuro@kolss.eu",
-  designer: "Sławomir Szewczuk",
-  designerPhone: "+48 510 700 889",
-  designerPhoneHref: "tel:+48510700889",
-  designerEmail: "projektant@kolss.eu",
-  designerEmailHref: "mailto:projektant@kolss.eu",
 };
 
 const trustItems = [
@@ -191,32 +192,26 @@ const projectTypes = [
 
 const contactDetails = [
   {
+    label: "Salon",
+    value: contact.company,
+    icon: IconBuildingStore,
+  },
+  {
     label: "Telefon",
     value: contact.phone,
     href: contact.phoneHref,
+    icon: IconPhone,
   },
   {
     label: "E-mail",
     value: contact.email,
     href: contact.emailHref,
+    icon: IconMail,
   },
   {
     label: "Adres",
     value: `${contact.streetAddress}, ${contact.postalCode} ${contact.city}`,
-  },
-  {
-    label: "Projektant",
-    value: contact.designer,
-  },
-  {
-    label: "Telefon projektanta",
-    value: contact.designerPhone,
-    href: contact.designerPhoneHref,
-  },
-  {
-    label: "E-mail projektanta",
-    value: contact.designerEmail,
-    href: contact.designerEmailHref,
+    icon: IconMapPin,
   },
 ] as const;
 
@@ -242,14 +237,6 @@ const jsonLd = {
           telephone: contact.phone,
           email: contact.email,
           contactType: "customer service",
-          areaServed: "PL",
-          availableLanguage: ["pl"],
-        },
-        {
-          "@type": "ContactPoint",
-          telephone: contact.designerPhone,
-          email: contact.designerEmail,
-          contactType: "project consultation",
           areaServed: "PL",
           availableLanguage: ["pl"],
         },
@@ -429,13 +416,13 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
                 {offerItems.map((item) => (
                   <article
                     key={item.title}
-                    className="overflow-hidden rounded-lg border border-border bg-surface"
+                    className="grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-lg border border-border bg-surface"
                   >
-                    <div className="relative aspect-[4/3] bg-muted-surface">
+                    <div className="relative aspect-[4/3] shrink-0 bg-muted-surface">
                       <Image
                         src={item.image}
                         alt={item.alt}
@@ -443,7 +430,7 @@ export default function Home() {
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="p-5">
+                    <div className="grid grid-rows-[auto_1fr_auto] p-5">
                       <h3 className="text-xl font-semibold leading-tight">
                         {item.title}
                       </h3>
@@ -453,7 +440,7 @@ export default function Home() {
                       {item.cta ? (
                         <Link
                           href="#kontakt"
-                          className="mt-6 inline-flex text-[13px] font-bold uppercase leading-none text-accent transition hover:text-foreground"
+                          className="self-end pt-6 text-[13px] font-bold uppercase leading-none text-accent transition hover:text-foreground"
                         >
                           {item.cta}
                         </Link>
@@ -654,30 +641,27 @@ export default function Home() {
                   <div className="mt-5 grid gap-2 text-[15px] leading-[1.5]">
                     <a
                       href={contact.phoneHref}
-                      className="text-foreground transition hover:text-accent"
+                      className="inline-flex items-center gap-2 text-foreground transition hover:text-accent"
                     >
+                      <IconPhone
+                        aria-hidden="true"
+                        size={18}
+                        stroke={1.75}
+                        className="shrink-0"
+                      />
                       {contact.phone}
                     </a>
                     <a
                       href={contact.emailHref}
-                      className="text-foreground transition hover:text-accent"
+                      className="inline-flex items-center gap-2 text-foreground transition hover:text-accent"
                     >
+                      <IconMail
+                        aria-hidden="true"
+                        size={18}
+                        stroke={1.75}
+                        className="shrink-0"
+                      />
                       {contact.email}
-                    </a>
-                    <p className="pt-3 text-muted">
-                      Projektant: {contact.designer}
-                    </p>
-                    <a
-                      href={contact.designerPhoneHref}
-                      className="text-foreground transition hover:text-accent"
-                    >
-                      {contact.designerPhone}
-                    </a>
-                    <a
-                      href={contact.designerEmailHref}
-                      className="text-foreground transition hover:text-accent"
-                    >
-                      {contact.designerEmail}
                     </a>
                   </div>
                 </address>
@@ -797,20 +781,26 @@ export default function Home() {
                 </p>
 
                 <address className="mt-8 not-italic">
-                  <dl className="grid gap-4 sm:grid-cols-2">
+                  <dl className="grid items-start gap-x-8 gap-y-5 sm:grid-cols-2">
                     {contactDetails.map((item) => (
                       <div
                         key={item.label}
-                        className="border-t border-background/20 pt-4"
+                        className="self-start border-t border-background/18 pt-4"
                       >
-                        <dt className="text-xs font-semibold uppercase text-background/58">
-                          {item.label}
+                        <dt className="flex items-center gap-2 text-xs font-semibold uppercase leading-none text-background/58">
+                          <item.icon
+                            aria-hidden="true"
+                            size={17}
+                            stroke={1.7}
+                            className="shrink-0"
+                          />
+                          <span>{item.label}</span>
                         </dt>
-                        <dd className="mt-2 text-[15px] leading-[1.4]">
+                        <dd className="mt-2 pl-[25px] text-[15px] leading-[1.42] text-background/88">
                           {"href" in item && item.href ? (
                             <a
                               href={item.href}
-                              className="transition hover:text-background/70"
+                              className="transition hover:text-background"
                             >
                               {item.value}
                             </a>
