@@ -88,7 +88,7 @@ export function HomeCatalog() {
     <section
       id="katalog-kuchni"
       aria-labelledby="home-catalog-title"
-      className="border-b border-border bg-surface"
+      className="border-b border-border bg-kolss-surface"
     >
       <div className="mx-auto w-full max-w-[1440px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
         <div className="max-w-[820px]">
@@ -98,7 +98,7 @@ export function HomeCatalog() {
           >
             Kuchnie ze szlachetnych materiałów
           </h2>
-          <p className="mt-6 max-w-[620px] text-[15px] leading-[1.45] text-foreground sm:text-base">
+          <p className="mt-6 max-w-[620px] text-[15px] leading-[1.6] text-muted sm:text-base">
             Poniżej pokazujemy kierunki estetyczne, które mogą stać się punktem
             wyjścia do indywidualnej kuchni. Każdy projekt dopasowujemy do
             wymiarów, układu wnętrza i wybranej konfiguracji materiałów.

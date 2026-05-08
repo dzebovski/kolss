@@ -94,7 +94,7 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="flex h-11 w-11 items-center justify-center border border-border bg-background text-2xl leading-none text-foreground transition hover:border-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground disabled:cursor-not-allowed disabled:opacity-35"
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-background text-2xl leading-none text-foreground transition hover:border-kolss-charcoal hover:bg-kolss-lime/16 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kolss-lime disabled:cursor-not-allowed disabled:opacity-35"
             aria-label="Poprzednia kolekcja"
             disabled={!canScrollPrev}
             onClick={scrollPrev}
@@ -103,7 +103,7 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
           </button>
           <button
             type="button"
-            className="flex h-11 w-11 items-center justify-center border border-border bg-background text-2xl leading-none text-foreground transition hover:border-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground disabled:cursor-not-allowed disabled:opacity-35"
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-background text-2xl leading-none text-foreground transition hover:border-kolss-charcoal hover:bg-kolss-lime/16 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kolss-lime disabled:cursor-not-allowed disabled:opacity-35"
             aria-label="Następna kolekcja"
             disabled={!canScrollNext}
             onClick={scrollNext}
@@ -130,11 +130,11 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
                   id={`${collection.title
                     .toLowerCase()
                     .replaceAll(" ", "-")}-title`}
-                  className="text-[34px] font-bold leading-[1.02] text-foreground sm:text-[40px] lg:text-[46px]"
+                  className="text-[34px] font-bold leading-[1.04] text-foreground sm:text-[40px] lg:text-[46px]"
                 >
                   {collection.title}
                 </h3>
-                <p className="mt-2 text-[15px] leading-[1.4] text-foreground sm:text-base">
+                <p className="mt-2 text-[15px] leading-[1.5] text-muted sm:text-base">
                   {collection.subtitle}
                 </p>
                 <p className="mt-3 max-w-[760px] text-[13px] font-semibold uppercase leading-[1.35] text-muted">
@@ -143,7 +143,7 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
               </div>
 
               <div className="grid gap-3 sm:gap-5 md:grid-cols-3 lg:gap-10">
-                <div className="relative aspect-[4/5] overflow-hidden bg-muted-surface">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-muted-surface shadow-[0_18px_44px_rgba(30,36,33,0.1)]">
                   <Image
                     src={collection.image}
                     alt={collection.alt}
@@ -155,7 +155,7 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
                 <div className="grid gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:contents">
                   {collection.details.map((detail) => (
                     <figure key={detail.caption} className="min-w-0">
-                      <div className="relative aspect-square overflow-hidden bg-muted-surface">
+                      <div className="relative aspect-square overflow-hidden rounded-lg bg-muted-surface shadow-[0_14px_34px_rgba(30,36,33,0.08)]">
                         <Image
                           src={detail.image}
                           alt={detail.alt}
@@ -185,8 +185,8 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
             type="button"
             className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
               selectedIndex === index
-                ? "w-9 bg-foreground"
-                : "w-2.5 bg-border hover:bg-muted"
+                ? "w-9 bg-kolss-lime"
+                : "w-2.5 bg-border hover:bg-kolss-muted-green"
             }`}
             aria-label={`Pokaż ${collections[index]?.title ?? "kolekcję"}`}
             aria-current={selectedIndex === index ? "true" : undefined}

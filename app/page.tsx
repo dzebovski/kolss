@@ -93,6 +93,29 @@ const materialBullets = [
   "Okucia i systemy wewnętrzne: detale, które decydują o tym, jak kuchnia działa po latach.",
 ] as const;
 
+const materialSwatches = [
+  {
+    name: "Oak",
+    text: "Warm fronts",
+    color: "var(--kolss-oak)",
+  },
+  {
+    name: "Walnut",
+    text: "Deep veneer",
+    color: "var(--kolss-walnut)",
+  },
+  {
+    name: "Stone",
+    text: "Soft panels",
+    color: "var(--kolss-stone)",
+  },
+  {
+    name: "Muted green",
+    text: "Showroom accent",
+    color: "var(--kolss-muted-green)",
+  },
+] as const;
+
 const proofItems: ImageItem[] = [
   {
     title: "Ciepła kuchnia z wyspą",
@@ -331,7 +354,7 @@ export default function Home() {
           <section
             id="start"
             aria-labelledby="hero-title"
-            className="home-hero relative isolate overflow-hidden border-b border-white/20 bg-black text-white"
+            className="home-hero dark-section relative isolate overflow-hidden border-b border-kolss-charcoal bg-kolss-charcoal text-kolss-warm-white"
           >
             <Image
               src={heroImage}
@@ -345,16 +368,16 @@ export default function Home() {
 
             <div className="relative z-10 mx-auto flex min-h-[var(--hero-min-height)] w-full max-w-[1440px] items-center px-5 py-[clamp(6.5rem,13svh,8rem)] sm:px-8 lg:px-20">
               <div className="max-w-[660px]">
-                <p className="mb-5 text-[13px] font-semibold uppercase leading-[1.25] text-white/90 sm:text-base">
+                <p className="mb-5 text-[13px] font-semibold uppercase leading-[1.25] text-kolss-warm-white/82 sm:text-base">
                   Kuchnie i zabudowy na wymiar | Warszawa i okolice
                 </p>
                 <h1
                   id="hero-title"
-                  className="hero-title max-w-full text-[34px] font-semibold leading-[1.02] text-white min-[420px]:text-[38px] sm:max-w-[680px] sm:text-[56px] lg:text-[66px]"
+                  className="hero-title max-w-full text-[34px] font-semibold leading-[1.02] text-kolss-warm-white min-[420px]:text-[38px] sm:max-w-[680px] sm:text-[56px] lg:text-[66px]"
                 >
                   Kuchnie i zabudowy na wymiar z naturalnym charakterem
                 </h1>
-                <p className="mt-6 max-w-full text-[14px] leading-[1.55] text-white/88 sm:max-w-[610px] sm:text-base">
+                <p className="mt-6 max-w-full text-[14px] leading-[1.6] text-kolss-warm-white/78 sm:max-w-[610px] sm:text-base">
                   Projektujemy i wykonujemy kuchnie oraz zabudowy dopasowane do
                   wnętrza, stylu życia i budżetu. Pracujemy z gotowymi
                   projektami architektów albo zaczynamy od planu, zdjęć i
@@ -371,7 +394,7 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <p className="mt-7 max-w-[620px] text-[12px] font-semibold uppercase leading-[1.45] text-white/72 sm:text-[13px]">
+                <p className="mt-7 max-w-[620px] text-[12px] font-semibold uppercase leading-[1.45] text-kolss-warm-white/62 sm:text-[13px]">
                   KOLSS od 1995 roku | Salon w Legionowie | Warszawa i okolice
                   | Projekt, produkcja, montaż
                 </p>
@@ -381,7 +404,7 @@ export default function Home() {
 
           <section
             aria-label="Najważniejsze informacje o KOLSS Polska"
-            className="border-b border-border bg-surface"
+            className="border-b border-border bg-kolss-surface"
           >
             <div className="mx-auto grid w-full max-w-[1440px] divide-y divide-border px-5 sm:px-8 md:grid-cols-4 md:divide-x md:divide-y-0 lg:px-10">
               {trustItems.map((item) => (
@@ -400,7 +423,7 @@ export default function Home() {
           <section
             id="oferta"
             aria-labelledby="offer-title"
-            className="border-b border-border"
+            className="border-b border-border bg-background"
           >
             <div className="mx-auto w-full max-w-[1440px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
               <div className="max-w-[820px]">
@@ -408,7 +431,7 @@ export default function Home() {
                 <h2 id="offer-title" className="section-title">
                   Co możemy zaprojektować i wykonać
                 </h2>
-                <p className="mt-6 max-w-[760px] text-[15px] leading-[1.55] text-foreground sm:text-base">
+                <p className="mt-6 max-w-[760px] text-[15px] leading-[1.6] text-muted sm:text-base">
                   KOLSS Polska pomaga zaplanować pojedynczą kuchnię albo kilka
                   zabudów w jednym mieszkaniu. Najważniejsze decyzje podejmujemy
                   na podstawie układu wnętrza, sposobu użytkowania i materiałów,
@@ -420,7 +443,7 @@ export default function Home() {
                 {offerItems.map((item) => (
                   <article
                     key={item.title}
-                    className="grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-lg border border-border bg-surface"
+                    className="kolss-card group grid h-full grid-rows-[auto_1fr] overflow-hidden"
                   >
                     <div className="relative aspect-[4/3] shrink-0 bg-muted-surface">
                       <Image
@@ -440,7 +463,7 @@ export default function Home() {
                       {item.cta ? (
                         <Link
                           href="#kontakt"
-                          className="self-end pt-6 text-[13px] font-bold uppercase leading-none text-accent transition hover:text-foreground"
+                          className="kolss-text-link self-end pt-6"
                         >
                           {item.cta}
                         </Link>
@@ -455,10 +478,10 @@ export default function Home() {
           <section
             id="materialy"
             aria-labelledby="materials-title"
-            className="border-b border-border bg-foreground text-background"
+            className="dark-section border-b border-kolss-warm-white/14"
           >
             <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.52fr_0.48fr] lg:px-10 lg:py-20">
-              <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-black/20 lg:min-h-[620px]">
+              <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-kolss-charcoal/30 lg:min-h-[620px]">
                 <Image
                   src={someKitchenImage}
                   alt="Nowoczesna kuchnia z białymi frontami, drewnem i kamiennym rysunkiem blatu"
@@ -495,6 +518,29 @@ export default function Home() {
                   ))}
                 </ul>
 
+                <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {materialSwatches.map((item) => (
+                    <div
+                      key={item.name}
+                      className="material-swatch bg-kolss-warm-white text-kolss-charcoal"
+                    >
+                      <div
+                        className="material-swatch-chip"
+                        style={{ backgroundColor: item.color }}
+                        aria-hidden="true"
+                      />
+                      <div className="p-3">
+                        <p className="text-sm font-semibold leading-tight">
+                          {item.name}
+                        </p>
+                        <p className="mt-1 text-xs leading-tight text-muted">
+                          {item.text}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
                 <Link
                   href="#kontakt"
                   className="hero-cta hero-cta-primary mt-9 w-full sm:w-fit"
@@ -510,7 +556,7 @@ export default function Home() {
           <section
             id="realizacje"
             aria-labelledby="proof-title"
-            className="border-b border-border"
+            className="border-b border-border bg-background"
           >
             <div className="mx-auto w-full max-w-[1440px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
               <div className="max-w-[860px]">
@@ -518,7 +564,7 @@ export default function Home() {
                 <h2 id="proof-title" className="section-title">
                   Przykłady rozwiązań, które pokazują kierunek pracy
                 </h2>
-                <p className="mt-6 max-w-[760px] text-[15px] leading-[1.55] text-foreground sm:text-base">
+                <p className="mt-6 max-w-[760px] text-[15px] leading-[1.6] text-muted sm:text-base">
                   Na stronie głównej pokazujemy wybrane kierunki estetyczne i
                   funkcjonalne. Pełne studia przypadków warto dodać dopiero
                   wtedy, gdy mamy potwierdzone zdjęcia, opis zadania, materiały
@@ -530,7 +576,7 @@ export default function Home() {
                 {proofItems.map((item) => (
                   <article
                     key={item.title}
-                    className="overflow-hidden rounded-lg border border-border bg-surface"
+                    className="kolss-card overflow-hidden"
                   >
                     <div className="relative aspect-[16/11] bg-muted-surface">
                       <Image
@@ -557,7 +603,7 @@ export default function Home() {
           <section
             id="proces"
             aria-labelledby="process-title"
-            className="border-b border-border bg-surface"
+            className="border-b border-border bg-kolss-surface-alt"
           >
             <div className="mx-auto w-full max-w-[1440px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
               <div className="grid gap-8 lg:grid-cols-[0.42fr_0.58fr]">
@@ -568,7 +614,7 @@ export default function Home() {
                   </h2>
                 </div>
                 <div>
-                  <p className="text-[15px] leading-[1.6] text-foreground sm:text-base">
+                  <p className="text-[15px] leading-[1.6] text-muted sm:text-base">
                     Najlepszy efekt powstaje wtedy, gdy estetyka, technika i
                     budżet są prowadzone razem. Dlatego zaczynamy od analizy
                     danych wejściowych, a dopiero potem przechodzimy do wyceny,
@@ -576,7 +622,7 @@ export default function Home() {
                   </p>
                   <Link
                     href="#kontakt"
-                    className="mt-7 inline-flex text-[13px] font-bold uppercase leading-none text-accent transition hover:text-foreground"
+                    className="kolss-text-link mt-7"
                   >
                     Wyślij plan do wstępnej analizy
                   </Link>
@@ -589,7 +635,7 @@ export default function Home() {
                     key={step.title}
                     className="border-t border-border pt-5"
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-sm font-bold text-background">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-kolss-lime text-sm font-bold text-kolss-charcoal">
                       {index + 1}
                     </span>
                     <h3 className="mt-5 text-lg font-semibold leading-tight">
@@ -607,7 +653,7 @@ export default function Home() {
           <section
             id="salon"
             aria-labelledby="salon-title"
-            className="border-b border-border"
+            className="border-b border-border bg-background"
           >
             <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.5fr_0.5fr] lg:px-10 lg:py-20">
               <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-muted-surface lg:min-h-[560px]">
@@ -625,7 +671,7 @@ export default function Home() {
                 <h2 id="salon-title" className="section-title">
                   Spotkajmy się w salonie KOLSS w Legionowie
                 </h2>
-                <p className="mt-6 text-[15px] leading-[1.6] text-foreground sm:text-base">
+                <p className="mt-6 text-[15px] leading-[1.6] text-muted sm:text-base">
                   Salon w Legionowie to miejsce, w którym można porozmawiać o
                   projekcie, obejrzeć wybrane rozwiązania i przejść przez
                   materiały z projektantem. Jeśli masz już plan, wizualizację
@@ -641,7 +687,7 @@ export default function Home() {
                   <div className="mt-5 grid gap-2 text-[15px] leading-[1.5]">
                     <a
                       href={contact.phoneHref}
-                      className="inline-flex items-center gap-2 text-foreground transition hover:text-accent"
+                      className="inline-flex items-center gap-2 text-foreground underline decoration-kolss-lime/0 underline-offset-4 transition hover:decoration-kolss-lime"
                     >
                       <IconPhone
                         aria-hidden="true"
@@ -653,7 +699,7 @@ export default function Home() {
                     </a>
                     <a
                       href={contact.emailHref}
-                      className="inline-flex items-center gap-2 text-foreground transition hover:text-accent"
+                      className="inline-flex items-center gap-2 text-foreground underline decoration-kolss-lime/0 underline-offset-4 transition hover:decoration-kolss-lime"
                     >
                       <IconMail
                         aria-hidden="true"
@@ -679,7 +725,7 @@ export default function Home() {
           <section
             id="dla-architektow"
             aria-labelledby="architects-title"
-            className="border-b border-border bg-surface"
+            className="border-b border-border bg-kolss-surface-alt"
           >
             <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.45fr_0.55fr] lg:px-10 lg:py-20">
               <div>
@@ -687,7 +733,7 @@ export default function Home() {
                 <h2 id="architects-title" className="section-title">
                   Współpracujemy z projektantami i architektami wnętrz
                 </h2>
-                <p className="mt-6 text-[15px] leading-[1.6] text-foreground sm:text-base">
+                <p className="mt-6 text-[15px] leading-[1.6] text-muted sm:text-base">
                   Jeśli pracujesz z gotowym projektem, możemy przeanalizować
                   dokumentację, doprecyzować rozwiązania techniczne i
                   przygotować ofertę wykonawczą. KOLSS może być partnerem dla
@@ -719,7 +765,7 @@ export default function Home() {
                   </ul>
                   <Link
                     href="#kontakt"
-                    className="mt-8 inline-flex text-[13px] font-bold uppercase leading-none text-accent transition hover:text-foreground"
+                    className="kolss-text-link mt-8"
                   >
                     Wyślij projekt do analizy
                   </Link>
@@ -731,7 +777,7 @@ export default function Home() {
           <section
             id="faq"
             aria-labelledby="faq-title"
-            className="border-b border-border"
+            className="border-b border-border bg-background"
           >
             <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.35fr_0.65fr] lg:px-10 lg:py-20">
               <div>
@@ -745,7 +791,7 @@ export default function Home() {
                 {faqItems.map((item) => (
                   <div
                     key={item.question}
-                    className="rounded-lg border border-border bg-surface p-5"
+                    className="kolss-card p-5"
                   >
                     <dt className="text-lg font-semibold leading-tight">
                       {item.question}
@@ -762,7 +808,7 @@ export default function Home() {
           <section
             id="kontakt"
             aria-labelledby="contact-title"
-            className="border-b border-border bg-foreground text-background"
+            className="dark-section border-b border-kolss-warm-white/14"
           >
             <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.42fr_0.58fr] lg:px-10 lg:py-20">
               <div>
@@ -818,7 +864,7 @@ export default function Home() {
                 action={contact.emailHref}
                 method="post"
                 encType="text/plain"
-                className="grid gap-5 rounded-lg border border-background/18 bg-background p-5 text-foreground sm:p-6"
+                className="kolss-form grid gap-5 rounded-lg border border-background/18 bg-background p-5 text-foreground shadow-[0_20px_52px_rgba(30,36,33,0.18)] sm:p-6"
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="grid gap-2 text-sm font-semibold">
@@ -828,7 +874,7 @@ export default function Home() {
                       type="text"
                       autoComplete="name"
                       required
-                      className="min-h-12 rounded-md border border-border bg-surface px-3 text-base font-normal outline-none transition focus:border-foreground"
+                      className="min-h-12 px-3 text-base font-normal"
                     />
                   </label>
                   <label className="grid gap-2 text-sm font-semibold">
@@ -837,7 +883,7 @@ export default function Home() {
                       name="Telefon"
                       type="tel"
                       autoComplete="tel"
-                      className="min-h-12 rounded-md border border-border bg-surface px-3 text-base font-normal outline-none transition focus:border-foreground"
+                      className="min-h-12 px-3 text-base font-normal"
                     />
                   </label>
                 </div>
@@ -850,7 +896,7 @@ export default function Home() {
                       type="email"
                       autoComplete="email"
                       required
-                      className="min-h-12 rounded-md border border-border bg-surface px-3 text-base font-normal outline-none transition focus:border-foreground"
+                      className="min-h-12 px-3 text-base font-normal"
                     />
                   </label>
                   <label className="grid gap-2 text-sm font-semibold">
@@ -859,7 +905,7 @@ export default function Home() {
                       name="Miasto / lokalizacja inwestycji"
                       type="text"
                       autoComplete="address-level2"
-                      className="min-h-12 rounded-md border border-border bg-surface px-3 text-base font-normal outline-none transition focus:border-foreground"
+                      className="min-h-12 px-3 text-base font-normal"
                     />
                   </label>
                 </div>
@@ -869,7 +915,7 @@ export default function Home() {
                   <select
                     name="Zakres projektu"
                     defaultValue=""
-                    className="min-h-12 rounded-md border border-border bg-surface px-3 text-base font-normal outline-none transition focus:border-foreground"
+                    className="min-h-12 px-3 text-base font-normal"
                   >
                     <option value="" disabled>
                       Wybierz zakres
@@ -887,14 +933,14 @@ export default function Home() {
                   <textarea
                     name="Opis projektu"
                     rows={5}
-                    className="rounded-md border border-border bg-surface px-3 py-3 text-base font-normal outline-none transition focus:border-foreground"
+                    className="px-3 py-3 text-base font-normal"
                   />
                 </label>
 
                 <label className="grid gap-2 text-sm font-semibold">
                   Dodaj plik
-                  <span className="flex min-h-14 cursor-pointer flex-col justify-center rounded-md border border-dashed border-border bg-surface px-3 py-3 text-sm font-normal transition hover:border-foreground sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-                    <span className="inline-flex w-fit rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background">
+                  <span className="flex min-h-14 cursor-pointer flex-col justify-center rounded-xl border border-dashed border-border bg-surface px-3 py-3 text-sm font-normal transition hover:border-accent sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                    <span className="inline-flex w-fit rounded-xl bg-kolss-lime px-4 py-2 text-sm font-semibold text-kolss-charcoal">
                       Wybierz pliki
                     </span>
                     <span className="mt-2 text-muted sm:mt-0">
@@ -906,7 +952,7 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="hero-cta w-full border border-foreground bg-foreground text-background"
+                  className="hero-cta hero-cta-primary w-full"
                 >
                   Wyślij do wstępnej analizy
                 </button>
@@ -919,25 +965,25 @@ export default function Home() {
           </section>
         </main>
 
-        <footer className="bg-background text-foreground">
+        <footer className="bg-kolss-charcoal text-kolss-warm-white">
           <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[0.4fr_0.6fr] lg:px-10">
             <div>
-              <p className="text-base font-semibold uppercase">
+              <p className="text-base font-semibold uppercase text-kolss-lime">
                 KOLSS Polska
               </p>
-              <p className="mt-3 max-w-sm text-sm leading-[1.5] text-muted">
+              <p className="mt-3 max-w-sm text-sm leading-[1.5] text-kolss-warm-white/66">
                 Kuchnie i zabudowy na wymiar dla Warszawy i okolic. Salon w
                 Legionowie, projekt, produkcja, dostawa i montaż.
               </p>
             </div>
 
             <nav aria-label="Nawigacja w stopce">
-              <ul className="grid gap-3 text-sm text-muted sm:grid-cols-2 lg:grid-cols-4">
+              <ul className="grid gap-3 text-sm text-kolss-warm-white/66 sm:grid-cols-2 lg:grid-cols-4">
                 {mainNavigation.slice(1).map((item) => (
                   <li key={`footer-${item.href}`}>
                     <Link
                       href={item.href}
-                      className="transition-colors hover:text-foreground"
+                      className="underline decoration-kolss-lime/0 underline-offset-4 transition hover:text-kolss-warm-white hover:decoration-kolss-lime"
                     >
                       {item.label}
                     </Link>

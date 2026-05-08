@@ -44,10 +44,18 @@ export function SiteHeader({
     };
 
     updateScrollState();
+    const immediateSync = window.setTimeout(updateScrollState, 0);
+    const hashSync = window.setTimeout(updateScrollState, 160);
     window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("hashchange", updateScrollState);
+    window.addEventListener("resize", updateScrollState);
 
     return () => {
+      window.clearTimeout(immediateSync);
+      window.clearTimeout(hashSync);
       window.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("hashchange", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
     };
   }, []);
 
