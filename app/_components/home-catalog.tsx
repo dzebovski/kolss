@@ -61,7 +61,8 @@ const kitchenCollections: KitchenCarouselCollection[] = [
   },
   {
     title: "Nota",
-    subtitle: "Klasyczna inspiracja w bardziej eleganckim, dopracowanym wydaniu.",
+    subtitle:
+      "Klasyczna inspiracja w bardziej eleganckim, dopracowanym wydaniu.",
     bestFor:
       "klasyczne apartamenty, domy, eleganckie wnętrza, kuchnie z mocniejszą osobowością",
     image: notaMain,
@@ -92,10 +93,7 @@ export function HomeCatalog() {
     >
       <div className="mx-auto w-full max-w-[1440px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
         <div className="max-w-[820px]">
-          <h2
-            id="home-catalog-title"
-            className="section-title max-w-[780px]"
-          >
+          <h2 id="home-catalog-title" className="section-title max-w-[780px]">
             Kuchnie ze szlachetnych materiałów
           </h2>
           <p className="mt-6 max-w-[620px] text-[15px] leading-[1.6] text-muted sm:text-base">

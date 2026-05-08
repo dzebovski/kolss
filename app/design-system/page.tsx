@@ -17,8 +17,7 @@ import floresMain from "@/assets/images/kitchens/flores/flores-main.desktop.jpg"
 
 export const metadata: Metadata = {
   title: "KOLSS Design System",
-  description:
-    "Warm premium natural interface system for KOLSS website.",
+  description: "Warm premium natural interface system for KOLSS website.",
 };
 
 const colors = [
@@ -240,7 +239,10 @@ export default function DesignSystemPage() {
               neutrals, charcoal typography, stone surfaces and natural
               wood-inspired tones.
             </p>
-            <a href="#ui-components" className="kolss-button kolss-button-primary mt-8">
+            <a
+              href="#ui-components"
+              className="kolss-button kolss-button-primary mt-8"
+            >
               View UI Components
               <IconArrowRight aria-hidden="true" size={18} stroke={1.8} />
             </a>
@@ -283,7 +285,10 @@ export default function DesignSystemPage() {
         </figure>
       </DesignSection>
 
-      <DesignSection eyebrow="Palette" title="Natural warmth with a focused lime accent.">
+      <DesignSection
+        eyebrow="Palette"
+        title="Natural warmth with a focused lime accent."
+      >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {colors.map((color) => (
             <ColorCard key={color.name} {...color} />
@@ -291,7 +296,10 @@ export default function DesignSystemPage() {
         </div>
       </DesignSection>
 
-      <DesignSection eyebrow="Typography" title="Editorial headings, readable body copy.">
+      <DesignSection
+        eyebrow="Typography"
+        title="Editorial headings, readable body copy."
+      >
         <div className="grid gap-5 lg:grid-cols-[0.58fr_0.42fr]">
           <div className="kolss-card p-6">
             <p className="text-sm font-semibold uppercase leading-none text-kolss-muted-green">
@@ -346,7 +354,10 @@ export default function DesignSystemPage() {
             >
               Primary hover
             </button>
-            <button className="kolss-button kolss-button-secondary" type="button">
+            <button
+              className="kolss-button kolss-button-secondary"
+              type="button"
+            >
               Explore Materials
             </button>
             <button className="kolss-button kolss-button-ghost" type="button">
@@ -358,10 +369,16 @@ export default function DesignSystemPage() {
           </div>
           <div className="dark-section rounded-lg border border-kolss-warm-white/14 p-6">
             <div className="flex flex-wrap items-center gap-3">
-              <button className="kolss-button kolss-button-primary" type="button">
+              <button
+                className="kolss-button kolss-button-primary"
+                type="button"
+              >
                 Dark primary
               </button>
-              <button className="kolss-button kolss-button-secondary" type="button">
+              <button
+                className="kolss-button kolss-button-secondary"
+                type="button"
+              >
                 Dark secondary
               </button>
             </div>
@@ -369,7 +386,10 @@ export default function DesignSystemPage() {
         </div>
       </DesignSection>
 
-      <DesignSection eyebrow="Badges" title="Compact tags for collections and materials.">
+      <DesignSection
+        eyebrow="Badges"
+        title="Compact tags for collections and materials."
+      >
         <div className="kolss-card flex flex-wrap gap-3 p-6">
           {badges.map((badge) => (
             <span
@@ -382,7 +402,11 @@ export default function DesignSystemPage() {
         </div>
       </DesignSection>
 
-      <DesignSection id="cards" eyebrow="Cards" title="Material, product and trust cards.">
+      <DesignSection
+        id="cards"
+        eyebrow="Cards"
+        title="Material, product and trust cards."
+      >
         <div className="grid gap-5 lg:grid-cols-4">
           {uiCards.map(({ icon: Icon, ...card }) => (
             <article key={card.title} className="kolss-card p-5">
@@ -425,7 +449,10 @@ export default function DesignSystemPage() {
         </div>
       </DesignSection>
 
-      <DesignSection eyebrow="Sections" title="Light, stone and dark UI examples.">
+      <DesignSection
+        eyebrow="Sections"
+        title="Light, stone and dark UI examples."
+      >
         <div className="grid gap-5">
           <section className="rounded-lg border border-border bg-kolss-warm-white p-6">
             <p className="section-kicker">Light section</p>
@@ -436,7 +463,10 @@ export default function DesignSystemPage() {
               Warm white background, charcoal text and a lime CTA for the main
               action.
             </p>
-            <button className="kolss-button kolss-button-primary mt-6" type="button">
+            <button
+              className="kolss-button kolss-button-primary mt-6"
+              type="button"
+            >
               Book a Consultation
             </button>
           </section>
@@ -469,14 +499,20 @@ export default function DesignSystemPage() {
               Charcoal background, warm white text and lime used only for the
               decisive action.
             </p>
-            <button className="kolss-button kolss-button-primary mt-6" type="button">
+            <button
+              className="kolss-button kolss-button-primary mt-6"
+              type="button"
+            >
               Request a Quote
             </button>
           </section>
         </div>
       </DesignSection>
 
-      <DesignSection eyebrow="Forms" title="Warm inputs with visible lime focus states.">
+      <DesignSection
+        eyebrow="Forms"
+        title="Warm inputs with visible lime focus states."
+      >
         <form className="kolss-form kolss-card grid gap-5 p-6">
           <div className="grid gap-4 md:grid-cols-3">
             <label className="grid gap-2 text-sm font-semibold">
@@ -489,7 +525,10 @@ export default function DesignSystemPage() {
             </label>
             <label className="grid gap-2 text-sm font-semibold">
               Project type
-              <select className="min-h-12 px-3 text-base font-normal" defaultValue="">
+              <select
+                className="min-h-12 px-3 text-base font-normal"
+                defaultValue=""
+              >
                 <option value="" disabled>
                   Kitchen
                 </option>
@@ -503,13 +542,19 @@ export default function DesignSystemPage() {
             Message
             <textarea className="px-3 py-3 text-base font-normal" rows={5} />
           </label>
-          <button className="kolss-button kolss-button-primary w-full sm:w-fit" type="button">
+          <button
+            className="kolss-button kolss-button-primary w-full sm:w-fit"
+            type="button"
+          >
             Request a Quote
           </button>
         </form>
       </DesignSection>
 
-      <DesignSection eyebrow="Icons" title="Thin, clear icons for service and quality.">
+      <DesignSection
+        eyebrow="Icons"
+        title="Thin, clear icons for service and quality."
+      >
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {iconFeatures.map((feature) => (
             <IconFeature key={feature.title} {...feature} />
@@ -517,7 +562,11 @@ export default function DesignSystemPage() {
         </div>
       </DesignSection>
 
-      <DesignSection dark eyebrow="Dark UI" title="Dark premium contrast with lime accents.">
+      <DesignSection
+        dark
+        eyebrow="Dark UI"
+        title="Dark premium contrast with lime accents."
+      >
         <div className="grid gap-5 lg:grid-cols-[0.45fr_0.55fr]">
           <div>
             <p className="text-[15px] leading-[1.65] text-kolss-warm-white/72">

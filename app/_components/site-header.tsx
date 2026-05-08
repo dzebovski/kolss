@@ -111,11 +111,7 @@ export function SiteHeader({
           <ul className="site-header-nav-list flex items-center text-[13px] font-semibold uppercase">
             {navigation.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="nav-link"
-                  onClick={closeMenu}
-                >
+                <Link href={item.href} className="nav-link" onClick={closeMenu}>
                   {item.label}
                 </Link>
               </li>
@@ -150,9 +146,7 @@ export function SiteHeader({
               isMenuOpen ? "translate-y-[6px] rotate-45" : ""
             }`}
           />
-          <span
-            className={`hamburger-line ${isMenuOpen ? "opacity-0" : ""}`}
-          />
+          <span className={`hamburger-line ${isMenuOpen ? "opacity-0" : ""}`} />
           <span
             className={`hamburger-line ${
               isMenuOpen ? "-translate-y-[6px] -rotate-45" : ""

@@ -818,4 +818,3 @@ Later replace with:
 - [ ] FAQ is visible and reflected in JSON-LD.
 - [ ] Mobile first viewport includes H1 and primary CTA.
 - [ ] Browser screenshot looks premium, calm and not like a generic template.
-
