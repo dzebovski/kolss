@@ -213,28 +213,38 @@ const projectTypes = [
   "Projekt od architekta",
 ] as const;
 
-const contactDetails = [
+const contactCards = [
   {
-    label: "Salon",
-    value: contact.company,
-    icon: IconBuildingStore,
+    title: "Salon i adres",
+    details: [
+      {
+        label: "Salon",
+        value: contact.company,
+        icon: IconBuildingStore,
+      },
+      {
+        label: "Adres",
+        value: `${contact.streetAddress}, ${contact.postalCode} ${contact.city}`,
+        icon: IconMapPin,
+      },
+    ],
   },
   {
-    label: "Telefon",
-    value: contact.phone,
-    href: contact.phoneHref,
-    icon: IconPhone,
-  },
-  {
-    label: "E-mail",
-    value: contact.email,
-    href: contact.emailHref,
-    icon: IconMail,
-  },
-  {
-    label: "Adres",
-    value: `${contact.streetAddress}, ${contact.postalCode} ${contact.city}`,
-    icon: IconMapPin,
+    title: "Telefon i e-mail",
+    details: [
+      {
+        label: "Telefon",
+        value: contact.phone,
+        href: contact.phoneHref,
+        icon: IconPhone,
+      },
+      {
+        label: "E-mail",
+        value: contact.email,
+        href: contact.emailHref,
+        icon: IconMail,
+      },
+    ],
   },
 ] as const;
 
@@ -463,7 +473,7 @@ export default function Home() {
                       {item.cta ? (
                         <Link
                           href="#kontakt"
-                          className="kolss-text-link self-end pt-6"
+                          className="kolss-text-link self-end w-fit pt-6"
                         >
                           {item.cta}
                         </Link>
@@ -481,13 +491,12 @@ export default function Home() {
             className="dark-section border-b border-kolss-warm-white/14"
           >
             <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.52fr_0.48fr] lg:px-10 lg:py-20">
-              <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-kolss-charcoal/30 lg:min-h-[620px]">
+              <div className="overflow-hidden rounded-lg bg-kolss-charcoal/30">
                 <Image
                   src={someKitchenImage}
                   alt="Nowoczesna kuchnia z białymi frontami, drewnem i kamiennym rysunkiem blatu"
-                  fill
                   sizes="(max-width: 1023px) 100vw, 52vw"
-                  className="object-cover"
+                  className="h-full min-h-[360px] w-full object-cover lg:min-h-[620px]"
                 />
               </div>
 
@@ -765,7 +774,7 @@ export default function Home() {
                   </ul>
                   <Link
                     href="#kontakt"
-                    className="kolss-text-link mt-8"
+                    className="kolss-text-link mt-8 w-fit"
                   >
                     Wyślij projekt do analizy
                   </Link>
@@ -827,36 +836,42 @@ export default function Home() {
                 </p>
 
                 <address className="mt-8 not-italic">
-                  <dl className="grid items-start gap-x-8 gap-y-5 sm:grid-cols-2">
-                    {contactDetails.map((item) => (
-                      <div
-                        key={item.label}
-                        className="self-start border-t border-background/18 pt-4"
+                  <div className="grid gap-4">
+                    {contactCards.map((card) => (
+                      <article
+                        key={card.title}
+                        className="rounded-lg border border-kolss-warm-white/14 bg-kolss-warm-white/6 p-5"
                       >
-                        <dt className="flex items-center gap-2 text-xs font-semibold uppercase leading-none text-background/58">
-                          <item.icon
-                            aria-hidden="true"
-                            size={17}
-                            stroke={1.7}
-                            className="shrink-0"
-                          />
-                          <span>{item.label}</span>
-                        </dt>
-                        <dd className="mt-2 pl-[25px] text-[15px] leading-[1.42] text-background/88">
-                          {"href" in item && item.href ? (
-                            <a
-                              href={item.href}
-                              className="transition hover:text-background"
-                            >
-                              {item.value}
-                            </a>
-                          ) : (
-                            item.value
-                          )}
-                        </dd>
-                      </div>
+                        <dl className="grid gap-5 sm:grid-cols-2">
+                          {card.details.map((item) => (
+                            <div key={item.label}>
+                              <dt className="flex items-center gap-2 text-xs font-semibold uppercase leading-none text-background/58">
+                                <item.icon
+                                  aria-hidden="true"
+                                  size={17}
+                                  stroke={1.7}
+                                  className="shrink-0 text-kolss-lime"
+                                />
+                                <span>{item.label}</span>
+                              </dt>
+                              <dd className="mt-2 pl-[25px] text-[15px] leading-[1.42] text-background/88">
+                                {"href" in item && item.href ? (
+                                  <a
+                                    href={item.href}
+                                    className="transition hover:text-background"
+                                  >
+                                    {item.value}
+                                  </a>
+                                ) : (
+                                  item.value
+                                )}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </article>
                     ))}
-                  </dl>
+                  </div>
                 </address>
               </div>
 
