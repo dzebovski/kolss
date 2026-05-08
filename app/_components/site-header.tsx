@@ -13,13 +13,13 @@ type NavigationItem = {
 type SiteHeaderProps = {
   navigation: readonly NavigationItem[];
   quoteHref: "#kontakt";
-  showroomHref: "#showroom";
+  salonHref: "#salon";
 };
 
 export function SiteHeader({
   navigation,
   quoteHref,
-  showroomHref,
+  salonHref,
 }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,7 +81,7 @@ export function SiteHeader({
         <Link
           href="#start"
           className="group flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
-          aria-label="Kolss Polska, strona główna"
+          aria-label="KOLSS Polska, strona główna"
           onClick={closeMenu}
         >
           <Image
@@ -187,11 +187,11 @@ export function SiteHeader({
               Otrzymaj wycenę
             </Link>
             <Link
-              href={showroomHref}
+              href={salonHref}
               className="mobile-menu-cta mobile-menu-cta-secondary"
               onClick={closeMenu}
             >
-              Umów wizytę w showroomie
+              Umów wizytę w salonie
             </Link>
           </div>
         </div>

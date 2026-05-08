@@ -14,6 +14,7 @@ export type KitchenCarouselDetail = {
 export type KitchenCarouselCollection = {
   title: string;
   subtitle: string;
+  bestFor: string;
   image: StaticImageData;
   alt: string;
   details: [KitchenCarouselDetail, KitchenCarouselDetail];
@@ -135,6 +136,9 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
                 </h3>
                 <p className="mt-2 text-[15px] leading-[1.4] text-foreground sm:text-base">
                   {collection.subtitle}
+                </p>
+                <p className="mt-3 max-w-[760px] text-[13px] font-semibold uppercase leading-[1.35] text-muted">
+                  Najlepiej pasuje do: {collection.bestFor}
                 </p>
               </div>
 

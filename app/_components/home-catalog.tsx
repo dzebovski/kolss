@@ -14,61 +14,70 @@ import notaMain from "@/assets/images/kitchens/nota/nota-main.desktop.jpg";
 
 const kitchenCollections: KitchenCarouselCollection[] = [
   {
-    title: "Kolekcja Light",
-    subtitle: "Kuchnie modułowe, biała baza.",
+    title: "Light",
+    subtitle:
+      "Jasna baza do nowoczesnych mieszkań i spokojnych, funkcjonalnych wnętrz.",
+    bestFor:
+      "mieszkania, apartamenty, projekty z kontrolowanym budżetem, jasne wnętrza",
     image: lightMain,
-    alt: "Jasna kuchnia z drewnianymi górnymi szafkami i białymi frontami",
+    alt: "Jasna kuchnia z białymi frontami, drewnianym akcentem i prostą linią zabudowy",
     details: [
       {
         image: lightDetailsOne,
         alt: "Zbliżenie na biały front kuchenny z czarnym uchwytem",
-        caption: "Про фасад, ручки Gola, і надійну фурнітуру Blum.",
+        caption:
+          "Gładkie fronty i prosta geometria pomagają utrzymać lekki, uporządkowany charakter kuchni.",
       },
       {
         image: lightDetailsTwo,
         alt: "Zbliżenie na drewniany blat i zielone płytki nad kuchenką",
         caption:
-          "Про столешницю з натурального дерева як опціональна комплектація",
+          "Blat, uchwyty i panel roboczy można dobrać tak, aby kuchnia była bardziej minimalistyczna albo cieplejsza wizualnie.",
       },
     ],
   },
   {
-    title: "Kolekcja Flores",
-    subtitle: "Kuchnia projektowana na zamówienie pod Twoje wymiary.",
+    title: "Flores",
+    subtitle:
+      "Ciepły fornir, ciemniejszy blat i zabudowa, która łączy kuchnię ze strefą dzienną.",
+    bestFor:
+      "ciepły minimalizm, kuchnia + salon, projekty z wyspą, wnętrza premium bez nadmiaru dekoracji",
     image: floresMain,
-    alt: "Nowoczesna kuchnia z drewnianymi frontami i jasną wyspą",
+    alt: "Nowoczesna kuchnia z ciepłymi drewnianymi frontami, ciemnym blatem i wyspą",
     details: [
       {
         image: floresDetailsOne,
         alt: "Zbliżenie na fornirowane drewniane fronty kuchenne",
         caption:
-          "Фасади мдф шпоновні, з ручками скритого монтажу. Повністю дерев’яні ящики, комплектуємо всі кухні. Надійні і витривкі.",
+          "Fornir lub drewniany rysunek frontów ociepla wnętrze i dobrze łączy się z matowymi, spokojnymi powierzchniami.",
       },
       {
         image: floresDetailsTwo,
         alt: "Zbliżenie na jasny blat kuchenny i płytę grzewczą",
         caption:
-          "Про столешницю з Gentas з вбудованою технікою і так далі",
+          "Ciemny blat i panel roboczy budują mocniejszy kontrast oraz bardziej architektoniczny charakter kuchni.",
       },
     ],
   },
   {
-    title: "Kolekcja Nota",
-    subtitle: "Kuchnia projektowana na zamówienie pod Twoje wymiary.",
+    title: "Nota",
+    subtitle: "Klasyczna inspiracja w bardziej eleganckim, dopracowanym wydaniu.",
+    bestFor:
+      "klasyczne apartamenty, domy, eleganckie wnętrza, kuchnie z mocniejszą osobowością",
     image: notaMain,
-    alt: "Klasyczna granatowa kuchnia z marmurowym blatem i złotymi uchwytami",
+    alt: "Elegancka kuchnia z ciemnymi frontami, jasnym blatem i dekoracyjnymi uchwytami",
     details: [
       {
         image: notaDetailsOne,
         alt: "Zbliżenie na granatowe fronty kuchenne ze złotymi uchwytami",
         caption:
-          "Фасад з натурального масиву дерева, ручки італійські Marela, комплектування Ergobox доступне для всіх кухонь під замовлення і бажання клієнта.",
+          "Frezowane lub bardziej dekoracyjne fronty nadają kuchni ponadczasowy charakter bez rezygnacji z funkcjonalnego układu.",
       },
       {
         image: notaDetailsTwo,
         alt: "Zbliżenie na blat, kuchenkę i granatową zabudowę kuchenną",
         caption:
-          "Про столешницю з PFLEIDERER з вбудованою технікою і так далі",
+          "Uchwyty, blat i proporcje zabudowy powinny być dobrane razem, aby klasyka nie stała się przypadkowa.",
       },
     ],
   },
@@ -87,12 +96,12 @@ export function HomeCatalog() {
             id="home-catalog-title"
             className="section-title max-w-[780px]"
           >
-            Drewniane kuchnie na zamówienie
+            Kuchnie ze szlachetnych materiałów
           </h2>
           <p className="mt-6 max-w-[620px] text-[15px] leading-[1.45] text-foreground sm:text-base">
-            Oto główne typy kuchni, które oferujemy. Korpusy wykonujemy z
-            laminowanej płyty, a fronty mogą być laminowane, lakierowane,
-            fornirowane lub z naturalnego drewna.
+            Poniżej pokazujemy kierunki estetyczne, które mogą stać się punktem
+            wyjścia do indywidualnej kuchni. Każdy projekt dopasowujemy do
+            wymiarów, układu wnętrza i wybranej konfiguracji materiałów.
           </p>
         </div>
 

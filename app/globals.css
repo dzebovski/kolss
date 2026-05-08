@@ -206,6 +206,7 @@ html {
 
   .hamburger-button {
     align-items: center;
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid currentColor;
     border-radius: 4px;
     color: currentColor;
@@ -228,8 +229,17 @@ html {
 
   .hamburger-button:hover,
   .hamburger-button:focus-visible {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.18);
     opacity: 1;
+  }
+
+  .site-header-solid .hamburger-button {
+    background: rgba(15, 18, 17, 0.04);
+  }
+
+  .site-header-solid .hamburger-button:hover,
+  .site-header-solid .hamburger-button:focus-visible {
+    background: rgba(15, 18, 17, 0.08);
   }
 
   .hamburger-button:active {
