@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import {
-  IconArrowRight,
-  IconHammer,
-  IconLeaf,
-  IconRulerMeasure2,
-  IconShieldCheck,
-  IconToolsKitchen2,
-} from "@tabler/icons-react";
+import { IconArrowRight } from "@tabler/icons-react";
 
 import { ContactSection } from "@/app/_components/home/ContactSection";
-import { ProcessSection } from "@/app/_components/home/ProcessSection";
 import { SalonSection } from "@/app/_components/home/SalonSection";
 import { SiteFooter } from "@/app/_components/home/SiteFooter";
 import { SiteHeader } from "@/app/_components/site-header";
@@ -75,8 +67,6 @@ type KitchenCollection = {
 const pageNavigation = [
   { label: "Start", href: "#start" },
   { label: "Kolekcje", href: "#kolekcje" },
-  { label: "Materiały", href: "#materialy" },
-  { label: "Proces", href: "#proces" },
   { label: "Salon", href: "#salon" },
   { label: "Kontakt", href: "#kontakt" },
 ] as const;
@@ -242,29 +232,6 @@ const collections: KitchenCollection[] = [
     feature: "wide",
   },
 ];
-
-const materialHighlights = [
-  {
-    title: "Naturalne drewno i fornir",
-    text: "Kolekcje Grand, Flores, Rondo i Madeyra budują ciepło na rysunku drewna, naturalnej ramie albo fornirowanej powierzchni.",
-    icon: IconLeaf,
-  },
-  {
-    title: "Lakier, MDF i kolor",
-    text: "MDF, Flores i Koko pozwalają pracować spokojną płaszczyzną, czystą linią i kolorem dobranym do architektury wnętrza.",
-    icon: IconToolsKitchen2,
-  },
-  {
-    title: "Komponenty i okucia",
-    text: "Front jest widoczny pierwszy, ale codzienny komfort zależy od okuć, systemów wewnętrznych i dopracowanej konstrukcji.",
-    icon: IconShieldCheck,
-  },
-  {
-    title: "Indywidualny wymiar",
-    text: "Każda kolekcja jest punktem wyjścia. Układ, proporcje, fronty i wyposażenie dopasowujemy do realnego pomieszczenia.",
-    icon: IconRulerMeasure2,
-  },
-] as const;
 
 function CollectionCard({ collection }: { collection: KitchenCollection }) {
   const isWide = collection.feature === "wide";
@@ -509,71 +476,6 @@ export default function KitchenCollectionsPage() {
           </div>
         </section>
 
-        <section
-          id="materialy"
-          aria-labelledby="materials-title"
-          className="dark-section border-b border-kolss-warm-white/14"
-        >
-          <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.46fr_0.54fr] lg:px-10 lg:py-20">
-            <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-kolss-charcoal/30 lg:min-h-[660px]">
-              <Image
-                src={grandMain}
-                alt="Detal eleganckiej kuchni Grand z naturalnym drewnem"
-                fill
-                sizes="(max-width: 1023px) 100vw, 46vw"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="flex flex-col justify-center">
-              <p className="section-kicker text-background/70">Materiały</p>
-              <h2
-                id="materials-title"
-                className="section-title text-background"
-              >
-                Kolekcja nadaje ton, a materiał decyduje o odbiorze na lata
-              </h2>
-              <p className="mt-6 text-[15px] leading-[1.65] text-background/80 sm:text-base">
-                Ten sam układ może być spokojny, klasyczny albo architektoniczny
-                zależnie od frontu, blatu, koloru i detalu. Dlatego kolekcje
-                traktujemy jako bazę do rozmowy o materiale, nie jako zamknięty
-                katalog.
-              </p>
-
-              <div className="mt-9 grid gap-4 sm:grid-cols-2">
-                {materialHighlights.map(({ icon: Icon, ...item }) => (
-                  <article
-                    key={item.title}
-                    className="rounded-lg border border-kolss-warm-white/14 bg-kolss-warm-white/6 p-5"
-                  >
-                    <Icon
-                      aria-hidden="true"
-                      size={27}
-                      stroke={1.65}
-                      className="text-kolss-lime"
-                    />
-                    <h3 className="mt-5 text-xl font-semibold leading-tight text-kolss-warm-white">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-[15px] leading-[1.55] text-kolss-warm-white/70">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-
-              <Link
-                href="#kontakt"
-                className="kolss-button kolss-button-primary mt-9 w-full sm:w-fit"
-              >
-                Zapytaj o fronty i wykończenia
-                <IconHammer aria-hidden="true" size={18} stroke={1.8} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <ProcessSection />
         <SalonSection />
         <ContactSection />
       </main>
