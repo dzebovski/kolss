@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import kolssLogo from "@/assets/images/kolss-white-logo.svg";
 
@@ -21,6 +23,7 @@ export function SiteHeader({
   quoteHref,
   salonHref,
 }: SiteHeaderProps) {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const solidHeader = isScrolled || isMenuOpen;
@@ -78,6 +81,44 @@ export function SiteHeader({
   }, [isMenuOpen]);
 
   const closeMenu = () => setIsMenuOpen(false);
+  const scrollToPageTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const isItemActive = (href: string) => {
+    if (href.startsWith("#")) {
+      return pathname === "/";
+    }
+
+    const path = href.split("#", 1)[0];
+    return pathname === path;
+  };
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+
+    if (pathname !== "/") {
+      return;
+    }
+
+    event.preventDefault();
+    scrollToPageTop();
+  };
+  const handleNavigationClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    isActive: boolean,
+  ) => {
+    closeMenu();
+
+    if (!isActive) {
+      return;
+    }
+
+    event.preventDefault();
+    scrollToPageTop();
+  };
 
   return (
     <header
@@ -87,10 +128,10 @@ export function SiteHeader({
     >
       <div className="site-header-inner mx-auto flex w-full max-w-[1440px] items-center justify-between">
         <Link
-          href="#start"
+          href="/"
           className="group flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
           aria-label="KOLSS Polska, strona główna"
-          onClick={closeMenu}
+          onClick={handleLogoClick}
         >
           <Image
             src={kolssLogo}
@@ -109,13 +150,24 @@ export function SiteHeader({
           aria-label="Główna nawigacja"
         >
           <ul className="site-header-nav-list flex items-center text-[13px] font-semibold uppercase">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="nav-link" onClick={closeMenu}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navigation.map((item) => {
+              const isActive = isItemActive(item.href);
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`nav-link ${isActive ? "nav-link-active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={(event) =>
+                      handleNavigationClick(event, isActive)
+                    }
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -166,17 +218,26 @@ export function SiteHeader({
         <div className="mobile-menu-content">
           <nav aria-label="Mobilna nawigacja">
             <ul className="grid gap-1">
-              {navigation.map((item) => (
-                <li key={`mobile-${item.href}`}>
-                  <Link
-                    href={item.href}
-                    className="mobile-nav-link"
-                    onClick={closeMenu}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {navigation.map((item) => {
+                const isActive = isItemActive(item.href);
+
+                return (
+                  <li key={`mobile-${item.href}`}>
+                    <Link
+                      href={item.href}
+                      className={`mobile-nav-link ${
+                        isActive ? "mobile-nav-link-active" : ""
+                      }`}
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={(event) =>
+                        handleNavigationClick(event, isActive)
+                      }
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 

@@ -19,6 +19,10 @@ export const mainNavigation = [
   { label: "Kontakt", href: "#kontakt" },
 ] as const;
 
+export const headerNavigation = [
+  { label: "Kolekcje", href: "/kitchen-collections" },
+] as const;
+
 export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString();
 }

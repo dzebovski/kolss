@@ -195,14 +195,20 @@ h3 {
   }
 
   .nav-link:hover,
-  .nav-link:focus-visible {
+  .nav-link:focus-visible,
+  .nav-link-active {
     opacity: 1;
   }
 
   .nav-link:hover::after,
-  .nav-link:focus-visible::after {
+  .nav-link:focus-visible::after,
+  .nav-link-active::after {
     opacity: 1;
     transform: scaleX(1);
+  }
+
+  .nav-link-active {
+    color: currentColor;
   }
 
   .kolss-button,
@@ -507,6 +513,11 @@ h3 {
   .mobile-nav-link:focus-visible {
     background: rgba(202, 220, 56, 0.18);
     transform: translateX(2px);
+  }
+
+  .mobile-nav-link-active {
+    background: rgba(202, 220, 56, 0.24);
+    color: var(--kolss-charcoal);
   }
 
   .home-hero {

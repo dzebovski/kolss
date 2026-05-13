@@ -1,8 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import type { ElementType } from "react";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
 import * as TablerIcons from "@tabler/icons-react";
+import type { EmblaCarouselType } from "embla-carousel";
+import useEmblaCarousel from "embla-carousel-react";
 import { processSteps } from "@/app/_content/home";
+
+function useMediaQuery(query: string) {
+  return useSyncExternalStore(
+    (onChange) => {
+      if (typeof window === "undefined") return () => undefined;
+      const media = window.matchMedia(query);
+      media.addEventListener("change", onChange);
+      return () => media.removeEventListener("change", onChange);
+    },
+    () => (typeof window === "undefined" ? false : window.matchMedia(query).matches),
+    () => false,
+  );
+}
 
 function StepIcon({
   name,
@@ -46,6 +64,49 @@ export function ProcessSection() {
     },
   ] as const;
 
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const syncCarouselState = useCallback((api: EmblaCarouselType) => {
+    setSelectedIndex(api.selectedScrollSnap());
+    setScrollSnaps(api.scrollSnapList());
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile || !emblaApi) return;
+
+    const animationFrame = window.requestAnimationFrame(() => {
+      syncCarouselState(emblaApi);
+    });
+
+    emblaApi.on("select", syncCarouselState);
+    emblaApi.on("reInit", syncCarouselState);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      emblaApi.off("select", syncCarouselState);
+      emblaApi.off("reInit", syncCarouselState);
+    };
+  }, [emblaApi, isMobile, syncCarouselState]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      emblaApi?.scrollTo(index);
+    },
+    [emblaApi],
+  );
+
+  const processStepsCount = processSteps.length;
+  const mobileSlidesLabel = useMemo(
+    () => `Etapy procesu, ${processStepsCount} slajdów`,
+    [processStepsCount],
+  );
+
   return (
     <section
       id="proces"
@@ -72,19 +133,35 @@ export function ProcessSection() {
           </div>
         </div>
 
-        <div className="relative mt-12">
+        <div
+          className="relative mt-12"
+          role={isMobile ? "region" : undefined}
+          aria-label={isMobile ? mobileSlidesLabel : undefined}
+          aria-roledescription={isMobile ? "carousel" : undefined}
+        >
           <div
             aria-hidden="true"
             className="pointer-events-none absolute left-6 right-6 top-7 hidden h-px bg-border lg:block"
           />
 
-          <ol className="grid gap-5 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-            {processSteps.map((step, index) => {
-              const iconName = (step as { icon?: string }).icon;
-              const stepLabel = `Etap ${String(index + 1).padStart(2, "0")}`;
+          <div className={isMobile ? "overflow-hidden" : undefined} ref={isMobile ? emblaRef : undefined}>
+            <ol className="-ml-5 flex touch-pan-y md:ml-0 md:grid md:gap-5 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+              {processSteps.map((step, index) => {
+                const iconName = (step as { icon?: string }).icon;
+                const stepLabel = `Etap ${String(index + 1).padStart(2, "0")}`;
+                const mobileAriaLabel = `Etap ${String(index + 1).padStart(
+                  2,
+                  "0",
+                )} z ${processStepsCount}`;
 
-              return (
-                <li key={step.title} className="relative">
+                return (
+                  <li
+                    key={step.title}
+                    className="relative min-w-0 flex-[0_0_88%] pl-5 md:flex-[initial] md:pl-0"
+                    role={isMobile ? "group" : undefined}
+                    aria-label={isMobile ? mobileAriaLabel : undefined}
+                    aria-roledescription={isMobile ? "slide" : undefined}
+                  >
                   <article className="h-full rounded-[20px] border border-border bg-kolss-surface p-5 shadow-[var(--shadow-card)] transition hover:-translate-y-[2px] hover:shadow-[var(--shadow-card-hover)]">
                     <header className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3">
@@ -119,10 +196,33 @@ export function ProcessSection() {
                       aria-hidden="true"
                     />
                   </article>
-                </li>
-              );
-            })}
-          </ol>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          {isMobile && scrollSnaps.length > 0 ? (
+            <div
+              className="mt-6 flex items-center gap-2 md:hidden"
+              aria-label="Wybierz etap procesu"
+            >
+              {scrollSnaps.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
+                    selectedIndex === index
+                      ? "w-9 bg-kolss-lime"
+                      : "w-2.5 bg-border hover:bg-kolss-muted-green"
+                  }`}
+                  aria-label={`Pokaż etap ${String(index + 1).padStart(2, "0")}`}
+                  aria-current={selectedIndex === index ? "true" : undefined}
+                  onClick={() => scrollTo(index)}
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <section

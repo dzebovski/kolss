@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   KitchenCarousel,
   type KitchenCarouselCollection,
@@ -101,6 +102,12 @@ export function HomeCatalog() {
             wyjścia do indywidualnej kuchni. Każdy projekt dopasowujemy do
             wymiarów, układu wnętrza i wybranej konfiguracji materiałów.
           </p>
+          <Link
+            href="/kitchen-collections"
+            className="kolss-button kolss-button-secondary mt-7 w-full sm:w-fit"
+          >
+            Zobacz wszystkie kolekcje
+          </Link>
         </div>
 
         <KitchenCarousel collections={kitchenCollections} />
