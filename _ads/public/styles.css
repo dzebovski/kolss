@@ -1,0 +1,269 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0f1115;
+  --surface: #1a1d24;
+  --border: #2a303c;
+  --text: #e8eaef;
+  --muted: #9aa3b2;
+  --accent: #6ee7b7;
+  --danger: #f87171;
+  --radius: 10px;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Ubuntu,
+    Cantarell,
+    sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f5f7;
+    --surface: #fff;
+    --border: #d5dbe6;
+    --text: #111827;
+    --muted: #5b6472;
+    --accent: #047857;
+    --danger: #b91c1c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.25rem clamp(1rem, 4vw, 2rem) 3rem;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.top h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+}
+
+.muted {
+  color: var(--muted);
+  margin: 0;
+}
+
+code {
+  font-size: 0.9em;
+  background: var(--surface);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  margin-top: 1.5rem;
+  max-width: 1100px;
+}
+
+.panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+textarea,
+input[type="file"] {
+  font: inherit;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 0.55rem 1rem;
+  background: transparent;
+  color: var(--text);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #042f1f;
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.btn.ghost {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.6rem;
+}
+
+.btn.danger {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+}
+
+.status {
+  min-height: 1.25rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar h2 {
+  margin: 0;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.card.picked {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}
+
+.card-media {
+  aspect-ratio: 4 / 3;
+  background: #0002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-media .no-img {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.thumbs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+}
+
+.thumbs img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.75;
+  border: 2px solid transparent;
+}
+
+.thumbs img.active,
+.thumbs img:hover {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.card-body {
+  padding: 0.75rem 0.85rem 0.85rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-text {
+  margin: 0;
+  font-size: 0.88rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 7.5rem;
+  overflow: auto;
+}
+
+.card-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
+.empty.hidden {
+  display: none;
+}

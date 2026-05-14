@@ -13,7 +13,7 @@ import { ProofSection } from "@/app/_components/home/ProofSection";
 import { SalonSection } from "@/app/_components/home/SalonSection";
 import { SiteFooter } from "@/app/_components/home/SiteFooter";
 import { TrustSection } from "@/app/_components/home/TrustSection";
-import { headerNavigation, mainNavigation } from "@/lib/site";
+import { headerNavigation } from "@/lib/site";
 import { buildHomeJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
 export default function Home() {
@@ -55,7 +55,7 @@ export default function Home() {
           <FaqSection />
           <ContactSection />
         </main>
-        <SiteFooter navigation={mainNavigation} />
+        <SiteFooter />
       </div>
     </>
   );

@@ -87,6 +87,17 @@ export function SiteHeader({
       behavior: "smooth",
     });
   };
+  const clearCurrentHash = () => {
+    if (!window.location.hash) {
+      return;
+    }
+
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
+  };
 
   const isItemActive = (href: string) => {
     if (href.startsWith("#")) {
@@ -104,6 +115,7 @@ export function SiteHeader({
     }
 
     event.preventDefault();
+    clearCurrentHash();
     scrollToPageTop();
   };
   const handleNavigationClick = (
@@ -117,6 +129,7 @@ export function SiteHeader({
     }
 
     event.preventDefault();
+    clearCurrentHash();
     scrollToPageTop();
   };
 
@@ -138,7 +151,7 @@ export function SiteHeader({
             alt=""
             width={157}
             height={24}
-            priority
+            preload
             className={`site-logo h-auto ${
               solidHeader ? "site-logo-dark" : ""
             } ${isScrolled ? "site-logo-compact" : ""}`}

@@ -11,7 +11,12 @@
     "format:write": "prettier . --write",
     "test:e2e": "playwright test",
     "stock:rename": "node scripts/rename-stock.mjs --dry-run",
-    "stock:rename:apply": "node scripts/rename-stock.mjs --apply"
+    "stock:rename:apply": "node scripts/rename-stock.mjs --apply",
+    "gallery:rename": "node scripts/rename-stock.mjs --root assets/images/gallery --recursive --dry-run",
+    "gallery:rename:apply": "node scripts/rename-stock.mjs --root assets/images/gallery --recursive --apply",
+    "salon:rename": "node scripts/rename-stock.mjs --root assets/images/salon --dry-run",
+    "salon:rename:apply": "node scripts/rename-stock.mjs --root assets/images/salon --apply",
+    "ads:local": "npm --prefix _ads start"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.43.0",

@@ -64,13 +64,6 @@ type KitchenCollection = {
   feature?: "wide";
 };
 
-const pageNavigation = [
-  { label: "Start", href: "#start" },
-  { label: "Kolekcje", href: "#kolekcje" },
-  { label: "Salon", href: "#salon" },
-  { label: "Kontakt", href: "#kontakt" },
-] as const;
-
 const collections: KitchenCollection[] = [
   {
     number: "01",
@@ -480,7 +473,7 @@ export default function KitchenCollectionsPage() {
         <ContactSection />
       </main>
 
-      <SiteFooter navigation={pageNavigation} />
+      <SiteFooter />
     </div>
   );
 }

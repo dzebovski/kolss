@@ -10,6 +10,7 @@ export const siteConfig = {
 
 export const mainNavigation = [
   { label: "Start", href: "#start" },
+  { label: "O nas", href: "/about" },
   { label: "Oferta", href: "#oferta" },
   { label: "Materiały", href: "#materialy" },
   { label: "Realizacje", href: "#realizacje" },
@@ -20,6 +21,7 @@ export const mainNavigation = [
 ] as const;
 
 export const headerNavigation = [
+  { label: "O nas", href: "/about" },
   { label: "Kolekcje", href: "/kitchen-collections" },
 ] as const;
 

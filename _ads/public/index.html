@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Локальні приклади реклами</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <h1>Локальні приклади реклами</h1>
+      <p class="muted">Текст і скріншоти зберігаються лише в <code>_ads/data/</code> на твоєму диску.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Додати картку</h2>
+      <form id="add-form" class="form">
+        <label class="field">
+          <span>Текст (копірайт, нотатки)</span>
+          <textarea name="text" rows="5" placeholder="Встав опис або текст оголошення…"></textarea>
+        </label>
+        <label class="field">
+          <span>Скріншоти (можна кілька)</span>
+          <input name="images" type="file" accept="image/*" multiple />
+        </label>
+        <button type="submit" class="btn primary">Зберегти</button>
+        <p id="form-status" class="status" role="status"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <h2>Картки</h2>
+        <label class="inline">
+          <input type="checkbox" id="filter-picked" />
+          Лише обрані
+        </label>
+      </div>
+      <div id="grid" class="grid"></div>
+      <p id="empty" class="muted empty hidden">Поки що нічого немає — додай перший запис вище.</p>
+    </section>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

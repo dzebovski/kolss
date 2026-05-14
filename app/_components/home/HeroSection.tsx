@@ -14,7 +14,7 @@ export function HeroSection() {
         src={homeImages.hero}
         alt=""
         fill
-        priority
+        preload
         sizes="100vw"
         className="hero-image object-cover"
       />

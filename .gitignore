@@ -45,3 +45,7 @@ next-env.d.ts
 
 # local image compressor
 /_tiny/
+
+# local ad scrapbook (uploads + manifest)
+/_ads/data/
+/_ads/node_modules/
