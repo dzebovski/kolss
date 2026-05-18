@@ -14,8 +14,8 @@ type NavigationItem = {
 
 type SiteHeaderProps = {
   navigation: readonly NavigationItem[];
-  quoteHref: "#kontakt";
-  salonHref: "#salon";
+  quoteHref: string;
+  salonHref: string;
 };
 
 export function SiteHeader({

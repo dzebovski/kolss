@@ -22,9 +22,15 @@ export type KitchenCarouselCollection = {
 
 type KitchenCarouselProps = {
   collections: KitchenCarouselCollection[];
+  ariaLabel?: string;
+  bestForLabel?: string;
 };
 
-export function KitchenCarousel({ collections }: KitchenCarouselProps) {
+export function KitchenCarousel({
+  collections,
+  ariaLabel = "Kolekcje kuchni",
+  bestForLabel = "Najlepiej pasuje do",
+}: KitchenCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: false,
@@ -83,7 +89,7 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
     <div
       className="mt-14 sm:mt-16 lg:mt-[4.5rem]"
       role="region"
-      aria-label="Kolekcje kuchni"
+      aria-label={ariaLabel}
       aria-roledescription="carousel"
     >
       <div className="mb-6 flex items-end justify-between gap-4">
@@ -138,7 +144,7 @@ export function KitchenCarousel({ collections }: KitchenCarouselProps) {
                   {collection.subtitle}
                 </p>
                 <p className="mt-3 max-w-[760px] text-[13px] font-semibold uppercase leading-[1.35] text-muted">
-                  Najlepiej pasuje do: {collection.bestFor}
+                  {bestForLabel}: {collection.bestFor}
                 </p>
               </div>
 

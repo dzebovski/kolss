@@ -23,6 +23,7 @@ export const mainNavigation = [
 export const headerNavigation = [
   { label: "O nas", href: "/about" },
   { label: "Kolekcje", href: "/kitchen-collections" },
+  { label: "Salon", href: "/salon-warszawa" },
 ] as const;
 
 export function absoluteUrl(path = "/") {

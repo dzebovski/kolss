@@ -29,6 +29,7 @@ const footerNavigation = [
   { label: "Start", href: "/" },
   { label: "O nas", href: "/about" },
   { label: "Kolekcje", href: "/kitchen-collections" },
+  { label: "Salon", href: "/salon-warszawa" },
 ] as const;
 
 const companyDetails = [
