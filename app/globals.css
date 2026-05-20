@@ -416,10 +416,22 @@ h3 {
     width: 44px;
   }
 
+  .site-header-transparent .hamburger-button {
+    background: rgba(247, 245, 239, 0.08);
+    border-color: rgba(247, 245, 239, 0.28);
+    color: var(--kolss-warm-white);
+  }
+
   .hamburger-button:hover,
   .hamburger-button:focus-visible {
     background: rgba(30, 36, 33, 0.08);
     opacity: 1;
+  }
+
+  .site-header-transparent .hamburger-button:hover,
+  .site-header-transparent .hamburger-button:focus-visible {
+    background: rgba(247, 245, 239, 0.14);
+    border-color: rgba(247, 245, 239, 0.42);
   }
 
   .hamburger-button:active {

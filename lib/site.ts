@@ -10,7 +10,6 @@ export const siteConfig = {
 
 export const mainNavigation = [
   { label: "Start", href: "#start" },
-  { label: "O nas", href: "/about" },
   { label: "Oferta", href: "#oferta" },
   { label: "Materiały", href: "#materialy" },
   { label: "Realizacje", href: "#realizacje" },
@@ -18,12 +17,15 @@ export const mainNavigation = [
   { label: "Salon", href: "#salon" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontakt", href: "#kontakt" },
+  { label: "O nas", href: "/about" },
 ] as const;
 
 export const headerNavigation = [
-  { label: "O nas", href: "/about" },
   { label: "Kolekcje", href: "/kitchen-collections" },
+  { label: "Galeria", href: "/gallery" },
+  { label: "Wyprzedaż", href: "/sale" },
   { label: "Salon", href: "/salon-warszawa" },
+  { label: "O nas", href: "/about" },
 ] as const;
 
 export function absoluteUrl(path = "/") {

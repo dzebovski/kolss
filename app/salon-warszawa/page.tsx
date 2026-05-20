@@ -19,7 +19,12 @@ import {
 } from "@/app/_components/kitchen-carousel";
 import { SiteFooter } from "@/app/_components/home/SiteFooter";
 import { SiteHeader } from "@/app/_components/site-header";
-import { contact } from "@/app/_content/home";
+import {
+  contact,
+  openingHours,
+  salonMapSrc,
+  salonRouteHref,
+} from "@/lib/contact";
 import { headerNavigation } from "@/lib/site";
 import heroImage from "@/assets/images/salon/salon-sample-7.jpg";
 import salonPhotoOne from "@/assets/images/salon/salon-sample-4.jpg";
@@ -46,27 +51,12 @@ export const metadata: Metadata = {
   },
 };
 
-const routeHref =
-  "https://www.google.com/maps/dir/?api=1&destination=52.401807098688344%2C20.948270951456184";
-const mapSrc =
-  "https://www.google.com/maps?q=52.401807098688344%2C20.948270951456184&output=embed";
-
 const pageNavigation = [
   { label: "Start", href: "#start" },
   { label: "Kontakt", href: "#kontakt" },
   { label: "W salonie", href: "#salon" },
   { label: "Ekspozycje", href: "#ekspozycje" },
   { label: "Dojazd", href: "#dojazd" },
-] as const;
-
-const openingHours = [
-  ["Poniedziałek", "10:00-19:00"],
-  ["Wtorek", "10:00-19:00"],
-  ["Środa", "10:00-19:00"],
-  ["Czwartek", "10:00-19:00"],
-  ["Piątek", "10:00-19:00"],
-  ["Sobota", "10:00-15:00"],
-  ["Niedziela", "zamknięte"],
 ] as const;
 
 const salonActions = [
@@ -287,7 +277,7 @@ export default function SalonWarszawaPage() {
                   <IconPhone aria-hidden="true" size={18} stroke={1.8} />
                 </a>
                 <a
-                  href={routeHref}
+                  href={salonRouteHref}
                   target="_blank"
                   rel="noreferrer"
                   className="hero-cta hero-cta-secondary"
@@ -355,7 +345,7 @@ export default function SalonWarszawaPage() {
                   <IconPhone aria-hidden="true" size={18} stroke={1.8} />
                 </a>
                 <a
-                  href={routeHref}
+                  href={salonRouteHref}
                   target="_blank"
                   rel="noreferrer"
                   className="hero-cta hero-cta-secondary"
@@ -577,7 +567,7 @@ export default function SalonWarszawaPage() {
           <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.62fr_0.38fr] lg:px-10 lg:py-20">
             <div className="overflow-hidden rounded-lg border border-border bg-background shadow-[0_18px_44px_rgba(30,36,33,0.09)]">
               <iframe
-                src={mapSrc}
+                src={salonMapSrc}
                 width="100%"
                 height="420"
                 className="block border-0"
@@ -598,7 +588,7 @@ export default function SalonWarszawaPage() {
                 klientów z Warszawy, Legionowa i okolic.
               </p>
               <a
-                href={routeHref}
+                href={salonRouteHref}
                 target="_blank"
                 rel="noreferrer"
                 className="hero-cta hero-cta-primary mt-8 w-full sm:w-fit"

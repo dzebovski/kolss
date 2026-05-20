@@ -7,6 +7,9 @@ import notaMain from "@/assets/images/kitchens/nota/nota-main.desktop.jpg";
 import someKitchenImage from "@/assets/images/some-kitchen.desktop.jpg";
 import workersOneImage from "@/assets/images/workers-1.dektop.jpg";
 import workersThreeImage from "@/assets/images/workers-3.dektop.jpg";
+import { contact } from "@/lib/contact";
+
+export { contact } from "@/lib/contact";
 
 export type HomeImageItem = {
   title: string;
@@ -21,17 +24,6 @@ export const homeImages = {
   someKitchen: someKitchenImage,
   workersOne: workersOneImage,
   workersThree: workersThreeImage,
-} as const;
-
-export const contact = {
-  company: "KOLSS Polska Sp. z o.o.",
-  streetAddress: "ul. Zegrzyńska 6",
-  postalCode: "05-119",
-  city: "Legionowo",
-  phone: "+48 510 700 913",
-  phoneHref: "tel:+48510700913",
-  email: "biuro@kolss.eu",
-  emailHref: "mailto:biuro@kolss.eu",
 } as const;
 
 export const trustItems = [

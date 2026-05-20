@@ -3,9 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  IconClock,
+  IconMail,
+  IconMapPin,
+  IconPhone,
+  IconRoute,
+} from "@tabler/icons-react";
 import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import kolssLogo from "@/assets/images/kolss-white-logo.svg";
+import { compactOpeningHours, contact, salonRouteHref } from "@/lib/contact";
 
 type NavigationItem = {
   label: string;
@@ -269,6 +277,92 @@ export function SiteHeader({
             >
               Umów wizytę w salonie
             </Link>
+          </div>
+
+          <div className="mt-5 rounded-lg border border-border bg-kolss-surface-alt p-4">
+            <p className="text-xs font-semibold uppercase leading-none text-kolss-muted-green">
+              Kontakt i godziny
+            </p>
+
+            <div className="mt-4 grid gap-3 text-sm leading-[1.4] text-muted">
+              <a
+                href={contact.phoneHref}
+                className="flex items-center gap-3 font-semibold text-foreground transition hover:text-kolss-muted-green focus-visible:text-kolss-muted-green"
+                onClick={closeMenu}
+              >
+                <IconPhone
+                  aria-hidden="true"
+                  size={18}
+                  stroke={1.8}
+                  className="shrink-0 text-kolss-muted-green"
+                />
+                <span>{contact.phone}</span>
+              </a>
+
+              <a
+                href={contact.emailHref}
+                className="flex items-center gap-3 font-semibold text-foreground transition hover:text-kolss-muted-green focus-visible:text-kolss-muted-green"
+                onClick={closeMenu}
+              >
+                <IconMail
+                  aria-hidden="true"
+                  size={18}
+                  stroke={1.8}
+                  className="shrink-0 text-kolss-muted-green"
+                />
+                <span>{contact.email}</span>
+              </a>
+
+              <div className="flex items-start gap-3">
+                <IconMapPin
+                  aria-hidden="true"
+                  size={18}
+                  stroke={1.8}
+                  className="mt-0.5 shrink-0 text-kolss-muted-green"
+                />
+                <span>
+                  {contact.streetAddress}
+                  <br />
+                  {contact.postalCode} {contact.city}
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-4 border-t border-border pt-4">
+              <div className="flex items-center gap-3">
+                <IconClock
+                  aria-hidden="true"
+                  size={18}
+                  stroke={1.8}
+                  className="shrink-0 text-kolss-muted-green"
+                />
+                <p className="text-xs font-semibold uppercase leading-none text-kolss-muted-green">
+                  Godziny pracy
+                </p>
+              </div>
+              <dl className="mt-3 grid gap-2 text-sm leading-none">
+                {compactOpeningHours.map(([day, hours]) => (
+                  <div
+                    key={day}
+                    className="flex items-baseline justify-between gap-4"
+                  >
+                    <dt className="text-muted">{day}</dt>
+                    <dd className="font-semibold text-foreground">{hours}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <a
+              href={salonRouteHref}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-lg border border-kolss-muted-green bg-kolss-surface px-4 text-sm font-semibold text-foreground transition hover:bg-kolss-lime/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kolss-lime"
+              onClick={closeMenu}
+            >
+              Wyznacz trasę w Google Maps
+              <IconRoute aria-hidden="true" size={18} stroke={1.8} />
+            </a>
           </div>
         </div>
       </div>

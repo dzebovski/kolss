@@ -27,9 +27,11 @@ const socialLinks = [
 
 const footerNavigation = [
   { label: "Start", href: "/" },
-  { label: "O nas", href: "/about" },
   { label: "Kolekcje", href: "/kitchen-collections" },
+  { label: "Galeria", href: "/gallery" },
+  { label: "Wyprzedaż", href: "/sale" },
   { label: "Salon", href: "/salon-warszawa" },
+  { label: "O nas", href: "/about" },
 ] as const;
 
 const companyDetails = [

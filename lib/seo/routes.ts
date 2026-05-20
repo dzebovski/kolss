@@ -39,6 +39,26 @@ export const seoRoutes: readonly SeoRoute[] = [
       "Przegląd kolekcji kuchni KOLSS, stylów frontów i kierunków projektowych.",
   },
   {
+    path: "/gallery",
+    title: "Galeria realizacji",
+    description:
+      "Zobacz galerię realizacji KOLSS: kuchnie, szafy i garderoby, łazienki oraz miejsca pracy wykonane na wymiar.",
+    changeFrequency: "weekly",
+    priority: 0.8,
+    llmsNote:
+      "Galeria zdjęć realizacji KOLSS z kuchniami, szafami, garderobami, łazienkami i miejscami pracy.",
+  },
+  {
+    path: "/sale",
+    title: "Wyprzedaż kuchni i zabudów ekspozycyjnych",
+    description:
+      "Gotowe kuchnie, garderoby i szafy ekspozycyjne KOLSS z rabatem do 60%. Aktualne ceny wyprzedażowe i kontakt do salonu.",
+    changeFrequency: "weekly",
+    priority: 0.8,
+    llmsNote:
+      "Strona wyprzedaży gotowych kuchni, garderób i szaf ekspozycyjnych KOLSS z cenami przed rabatem i po rabacie.",
+  },
+  {
     path: "/salon-warszawa",
     title: "KOLSS Salon Warszawa | Oficjalny salon KOLSS Polska",
     description:
